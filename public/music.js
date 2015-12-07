@@ -1,5 +1,24 @@
 console.log("Hello, Dave");
-var test = 42;
 
-var notes = ['c', 'd#', 'f', 'a', 'e']
-var timing = [1,  2,   3,     6,   9]
+var hardCodedMelody = function () {
+
+
+
+
+
+var notes = [
+  {pitch:'c',
+  time: 0.5},
+  {pitch:'d#',
+  time: 0.8},
+  {pitch:'f',
+  time: 0.9},
+  {pitch:'a',
+  time: 2.2},
+  {pitch:'e',
+  time: 2.7},
+];
+
+return notes
+
+}
