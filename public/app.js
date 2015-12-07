@@ -11,8 +11,8 @@ $(function() {
   var notes = hardCodedMelody()
 
 
-    visualizer('vis', [])
-    visualizer('sim', notes )
 
+    visualizer('sim', notes )
+      
 
 })
