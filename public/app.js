@@ -1,4 +1,8 @@
+//global
+timerStatus = false;
+
 // the main controller file
+
 
 
 var Engine = Matter.Engine,
@@ -6,15 +10,29 @@ var Engine = Matter.Engine,
   Bodies = Matter.Bodies,
   Render = Matter.render,
   Events = Matter.Events,
-  Vector = Matter.Vector;
+  Vector = Matter.Vector,
+  Body = Matter.Body
 
 
 $(function() {
   var notes = hardCodedMelody()
 
+  $('#timer').click(function() {
+    if (!timerStatus) {
+        intervalID = startTimer();
+    }
+
+    console.log(intervalID);
+  })
+
+  $('#stop').click(function () {
+    timerStatus=false
+    window.clearInterval(intervalID)
+  })
 
 
-    visualizer('sim', notes )
+
+  visualizer('sim', notes)
 
 
 })

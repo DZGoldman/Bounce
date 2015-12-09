@@ -23,25 +23,25 @@ var visualizer = function(type, newBlockersOrNotes) {
 );
   circle.restitution = 1;
   circle.friction = 0;
-  circle.frictionAir=0;
+  // circle.frictionAir=0;
   circle.groupId=1;
   bodies.push(circle)
 
 
   // create walls
-  var bottom = Bodies.rectangle(400, 600, 800, 10, {
-    isStatic: true
-  })
-  var top = Bodies.rectangle(400, 0, 800, 10, {
-    isStatic: true
-  })
-  var left = Bodies.rectangle(0, 300, 10, 600, {
-    isStatic: true
-  })
-  var right = Bodies.rectangle(800, 300, 10, 600, {
-    isStatic: true
-  })
-  bodies.push(bottom, top, left, right);
+  // var bottom = Bodies.rectangle(400, 600, 800, 10, {
+  //   isStatic: true
+  // })
+  // var top = Bodies.rectangle(400, 0, 800, 10, {
+  //   isStatic: true
+  // })
+  // var left = Bodies.rectangle(0, 300, 10, 600, {
+  //   isStatic: true
+  // })
+  // var right = Bodies.rectangle(800, 300, 10, 600, {
+  //   isStatic: true
+  // })
+  // bodies.push(bottom, top, left, right);
 
   //add all bodies to world
   World.add(world, bodies)
@@ -100,6 +100,18 @@ var visualizer = function(type, newBlockersOrNotes) {
       });
       // at each update
       Events.on(engine, "afterTick", function(event) {
+        if(circle.position.y>world.bounds.max.y){
+           Body.translate( circle, {x:0,y:-world.bounds.max.y} );
+        };
+        if (circle.position.y<0) {
+           Body.translate( circle, {x:0,y:world.bounds.max.y} );
+        };
+        if (circle.position.x>world.bounds.max.x) {
+          Body.translate( circle, {x:-world.bounds.max.x,y:0} );
+        };
+        if (circle.position.x<0) {
+          Body.translate( circle, {x:world.bounds.max.x,y:0} );
+        };
 
         var currentTime = engine.timing.timestamp;
         // at the right time...
@@ -130,7 +142,13 @@ var visualizer = function(type, newBlockersOrNotes) {
           World.add(world, newBlocker)
 
           currentNote += 1;
-        }
+
+
+
+        };
+
+
+
       }else if (currentNote==notes.length) {
         console.log('The sim is over');
 

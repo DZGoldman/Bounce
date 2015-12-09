@@ -1,3 +1,20 @@
+
+var startTimer = function() {
+  timerStatus = true;
+  //global
+   time = 0;
+var intervalId=  window.setInterval(function() {
+    // console.log('?');
+    time+=1;
+    // console.log(time);
+    $('#timer').text(Math.round(time)/100)
+  }, 10);
+ return intervalId
+}
+
+
+
+
 // var notesArray = [{
 //     pitch: 'G',
 //     time: 1
@@ -57,24 +74,77 @@
 
 console.log("Hello, Dave");
 
+
+//piano
+
+$(document).keydown(function(e) {
+  console.log('key pressed');
+  switch (e.which) {
+    // case 65: //a
+    // player('G')
+    // break;
+    case 65:
+      player('G')
+      break;
+    case 83: //s
+      player('A')
+      break;
+    case 65:
+      player('A#')
+      break;
+    case 68: //d
+      player('B')
+      break;
+    case 70: //f
+      player('C')
+      break;
+    case 65:
+      player('C#')
+      break;
+    case 71: //g
+      player('D')
+      break;
+    case 65:
+      player('D#')
+      break;
+    case 72: //h
+      player('E')
+      break;
+    case 65:
+      player('F')
+      break;
+    case 74: //j
+      player('F#')
+      break;
+    case 75: //k
+      player('hG')
+      break
+
+
+
+    default:
+      return; // exit this handler for other keys
+  }
+});
+
 var hardCodedMelody = function() {
   var notesArray = [{
 
-    pitch: 'C',
-       time: 1
-     }, {
-       pitch: 'D',
-       time: 2
-     }, {
-       pitch: 'E',
-       time: 3
-     }, {
-       pitch: 'F',
-       time: 4
-     }, {
-       pitch: 'G',
-       time: 5
-     }
+      pitch: 'C',
+      time: 1
+    }, {
+      pitch: 'D',
+      time: 2
+    }, {
+      pitch: 'E',
+      time: 3
+    }, {
+      pitch: 'F',
+      time: 4
+    }, {
+      pitch: 'G',
+      time: 5
+    }
 
 
   ];
@@ -98,14 +168,11 @@ var player = function(note) {
     case 'A':
       playNote('68437')
       break;
-
     case 'A#':
       playNote('68439');
-      audio.play();
       break;
     case 'B':
       playNote('68438');
-      audio.play();
       break;
     case 'C':
       playNote('68441')
@@ -122,21 +189,20 @@ var player = function(note) {
     case 'E':
       playNote('68443')
       break;
-
     case 'F':
       playNote('68446');
-
       break;
     case 'F#':
       playNote('68445');
-
       break;
     case 'G':
+      console.log('low g');
+      var audio = new Audio('http://www.freesound.org/data/previews/95/95332_1579599-lq.mp3');
+      audio.play();
+      break
+    case 'hG':
       playNote('68448');
       break;
-    case 'G#':
-
-      playNote('68448');
 
       break;
 

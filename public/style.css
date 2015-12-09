@@ -1,0 +1,14 @@
+body{
+  background-color: grey
+}
+
+#timer{
+border: 2px solid black;
+width: 150px;
+height: 50px;
+margin: 10px;
+
+font-size: 30px;
+
+
+}
