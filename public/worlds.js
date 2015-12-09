@@ -80,7 +80,8 @@ var visualizer = function(type, newBlockersOrNotes) {
       })
     });
 
-  }else if (type=='sim') {
+  }
+  else if (type=='sim') {
       //set basic parameters
       engine.timing.timeScale =1;
       // create the blockers-
@@ -100,6 +101,27 @@ var visualizer = function(type, newBlockersOrNotes) {
       });
       // at each update
       Events.on(engine, "afterTick", function(event) {
+
+        if (newBlocker) {
+
+
+          if(newBlocker.position.y>world.bounds.max.y){
+             Body.translate( newBlocker, {x:0,y:-world.bounds.max.y} );
+          };
+          if (newBlocker.position.y<0) {
+             Body.translate( newBlocker, {x:0,y:world.bounds.max.y} );
+          };
+          if (newBlocker.position.x>world.bounds.max.x) {
+            Body.translate( newBlocker, {x:-world.bounds.max.x,y:0} );
+          };
+          if (newBlocker.position.x<0) {
+            Body.translate( newBlocker, {x:world.bounds.max.x,y:0} );
+          };
+
+
+        }
+
+
         if(circle.position.y>world.bounds.max.y){
            Body.translate( circle, {x:0,y:-world.bounds.max.y} );
         };
