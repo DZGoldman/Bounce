@@ -1,130 +1,80 @@
-
+console.log("Hello, Dave");
+var time=1
 var startTimer = function() {
   timerStatus = true;
   //global
-   time = 0;
-var intervalId=  window.setInterval(function() {
+  var ticker = time*100;
+  var intervalId = window.setInterval(function() {
     // console.log('?');
-    time+=1;
+    ticker += 1;
+    time= Math.round(ticker) / 100
     // console.log(time);
-    $('#timer').text(Math.round(time)/100)
+    $('#timer').text(time)
   }, 10);
- return intervalId
+  return intervalId
 }
 
-
-
-
-// var notesArray = [{
-//     pitch: 'G',
-//     time: 1
-//   }, {
-//     pitch: 'C',
-//     time: 2
-//   }, {
-//     pitch: 'E',
-//     time: 5
-//   }, {
-//     pitch: 'C',
-//     time: 5.5
-//   }, {
-//     pitch: 'D',
-//     time: 6
-//   }, {
-//     pitch: 'C',
-//     time: 9
-//   }, {
-//     pitch: 'A',
-//     time: 10
-//   }
-// ,{pitch:'G',
-// time: 13},
-// {pitch:'G',
-// time: 14},
-// {pitch:'C',
-// time: 17},
-// {pitch:'E',
-// time: 18},
-// {pitch:'C',
-// time: 21},
-// {pitch:'E',
-// time: 22},
-// {pitch:'D',
-// time: 25},
-// {pitch:'G',
-// time: 26}
-
-
-// pitch: 'D',
-// time: 1
-// }, {
-// pitch: 'A',
-// time: 2
-// }, {
-// pitch: 'D',
-// time: 3
-// }, {
-// pitch: 'A',
-// time: 5
-// }, {
-// pitch: 'D',
-// time: 7
-// },
-
-
-console.log("Hello, Dave");
-
+var Note = function (pitch, time) {
+  return {
+    pitch: pitch,
+    time: time
+  }
+};
 
 //piano
 
 $(document).keydown(function(e) {
   console.log('key pressed');
+  console.log(time);
+
+  var note = ''
   switch (e.which) {
-    // case 65: //a
-    // player('G')
-    // break;
     case 65:
-      player('G')
+    var note ='G';
       break;
     case 83: //s
-      player('A')
-      break;
+      var note = 'A'
+            break;
     case 65:
-      player('A#')
+      var note = 'A#'
       break;
     case 68: //d
-      player('B')
-      break;
+      var note = 'B'
+            break;
     case 70: //f
-      player('C')
-      break;
+      var note = 'C'
+            break;
     case 65:
-      player('C#')
+      var note = 'C#'
       break;
     case 71: //g
-      player('D')
-      break;
+      var note = 'D'
+            break;
     case 65:
-      player('D#')
+      var note = 'D#'
       break;
     case 72: //h
-      player('E')
-      break;
+      var note = 'E'
+            break;
     case 65:
-      player('F')
-      break;
+      var note = 'F'
+            break;
     case 74: //j
-      player('F#')
+      var note = 'F#'
       break;
     case 75: //k
-      player('hG')
+      var note = 'hG'
+
       break
-
-
 
     default:
       return; // exit this handler for other keys
+  };
+  if (note) {
+    player(note);
+    playedNotes.push( Note(note, time) )
   }
+
 });
 
 var hardCodedMelody = function() {
@@ -204,14 +154,66 @@ var player = function(note) {
       playNote('68448');
       break;
 
-      break;
-
-
-
-
-
 
   }
 
 
 }
+
+
+
+// var notesArray = [{
+//     pitch: 'G',
+//     time: 1
+//   }, {
+//     pitch: 'C',
+//     time: 2
+//   }, {
+//     pitch: 'E',
+//     time: 5
+//   }, {
+//     pitch: 'C',
+//     time: 5.5
+//   }, {
+//     pitch: 'D',
+//     time: 6
+//   }, {
+//     pitch: 'C',
+//     time: 9
+//   }, {
+//     pitch: 'A',
+//     time: 10
+//   }
+// ,{pitch:'G',
+// time: 13},
+// {pitch:'G',
+// time: 14},
+// {pitch:'C',
+// time: 17},
+// {pitch:'E',
+// time: 18},
+// {pitch:'C',
+// time: 21},
+// {pitch:'E',
+// time: 22},
+// {pitch:'D',
+// time: 25},
+// {pitch:'G',
+// time: 26}
+
+
+// pitch: 'D',
+// time: 1
+// }, {
+// pitch: 'A',
+// time: 2
+// }, {
+// pitch: 'D',
+// time: 3
+// }, {
+// pitch: 'A',
+// time: 5
+// }, {
+// pitch: 'D',
+// time: 7
+// },

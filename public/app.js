@@ -1,9 +1,7 @@
+// the main controller file
 //global
 timerStatus = false;
-
-// the main controller file
-
-
+var playedNotes= []
 
 var Engine = Matter.Engine,
   World = Matter.World,
@@ -17,22 +15,20 @@ var Engine = Matter.Engine,
 $(function() {
   var notes = hardCodedMelody()
 
-  $('#timer').click(function() {
+  $(document).keydown(function() {
     if (!timerStatus) {
         intervalID = startTimer();
     }
-
-    console.log(intervalID);
   })
 
   $('#stop').click(function () {
     timerStatus=false
-    window.clearInterval(intervalID)
+    window.clearInterval(intervalID);
+    console.log(playedNotes);
+      visualizer('sim', playedNotes)
   })
 
 
-
-  visualizer('sim', notes)
 
 
 })

@@ -154,7 +154,7 @@ var visualizer = function(type, newBlockersOrNotes) {
 
         currentNote+=1;
         window.setTimeout(function () {
-            visualizer('vis', allBlockers )
+           visualizer('sim', notes )
         }, 3000)
 
           //Matter.Engine.clear(world)
