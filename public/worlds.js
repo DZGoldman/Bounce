@@ -22,13 +22,13 @@ var visualizer = function(type, newBlockersOrNotes) {
 //     x: 2200,
 //     y:2000}
 
-  world.gravity.y = .3;
+  world.gravity.y = .5;
   var bodies = []
 
   // create circle (music player)
   var circle = Bodies.circle(300, 40, 8, 1000
 );
-  circle.restitution = 1;
+  circle.restitution = 1.1;
   circle.friction = 0;
   // circle.frictionAir=0;
   circle.groupId=1;
@@ -111,24 +111,7 @@ var visualizer = function(type, newBlockersOrNotes) {
       // at each update
       Events.on(engine, "afterTick", function(event) {
         // console.log(circle.velocity.y)
-        if (newBlocker) {
 
-
-          if(newBlocker.position.y>world.bounds.max.y){
-             Body.translate( newBlocker, {x:0,y:-world.bounds.max.y} );
-          };
-          if (newBlocker.position.y<0) {
-             Body.translate( newBlocker, {x:0,y:world.bounds.max.y} );
-          };
-          if (newBlocker.position.x>world.bounds.max.x) {
-            Body.translate( newBlocker, {x:-world.bounds.max.x,y:0} );
-          };
-          if (newBlocker.position.x<0) {
-            Body.translate( newBlocker, {x:world.bounds.max.x,y:0} );
-          };
-
-
-        }
 
 
         if(circle.position.y>world.bounds.max.y){
@@ -150,24 +133,42 @@ var visualizer = function(type, newBlockersOrNotes) {
           //make a new blocker
         if (currentTime > notes[currentNote].time * 1000) {
           // figure out its location
-          var xVel= circle.velocity.x;
-          var yVel = circle.velocity.y;
-          var timeGap = 20;
+
+          var V = 60.27;
+          var A = 10.04
+
+          var xVel= circle.velocity.x*V;
+          var yVel = circle.velocity.y*V;
+          var timeGap = 0.3;
           var xLoc = circle.position.x;
           var yLoc = circle.position.y;
 
-          var newBlocker = Bodies.rectangle(xLoc+ xVel*timeGap, yLoc+yVel*timeGap, 40, 40, {
+          var accel = world.gravity.y * A
+
+          var newBlocker = Bodies.rectangle(xLoc+ xVel*timeGap, yLoc+yVel*timeGap + 0.5*accel*timeGap*timeGap, 40, 40, {
             render: {
               strokeStyle: '#777'
             },
             isStatic: true,
             angle: Math.random() * Math.PI,
             //create a new key called note
-            note: notes[currentNote].pitch
+            note: notes[currentNote].pitch,
+            groupId: 2,
+            bodyCount: currentNote
           });
-          //give blocker different ID, so it collides with circle
-          newBlocker.groupId=2;
-          newBlocker.bodyCount = currentNote
+          if(newBlocker.position.y>world.bounds.max.y){
+             Body.translate( newBlocker, {x:0,y:-world.bounds.max.y} );
+          };
+          if (newBlocker.position.y<0) {
+             Body.translate( newBlocker, {x:0,y:world.bounds.max.y} );
+          };
+          if (newBlocker.position.x>world.bounds.max.x) {
+            Body.translate( newBlocker, {x:-world.bounds.max.x,y:0} );
+          };
+          if (newBlocker.position.x<0) {
+            Body.translate( newBlocker, {x:world.bounds.max.x,y:0} );
+          };
+
 
           allBlockers.push(newBlocker)
           World.add(world, newBlocker)
