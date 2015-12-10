@@ -40,6 +40,7 @@ label {
   z-index: 10;
   border-radius: 2px;
 }
+
 .white-buttons label:after {
   content: '';
   position: absolute;

@@ -35,6 +35,8 @@ $(document).keydown(function(e) {
   switch (e.which) {
     case 65:
     var note ='G';
+    console.log('hi');
+      //$('label[for=button-1]' ).attr('background', 'black')
       break;
     case 83: //s
       var note = 'A'
