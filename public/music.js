@@ -25,7 +25,7 @@ var Note = function (pitch, time) {
 
 $(document).keydown(function(e) {
   console.log('key pressed');
-  console.log(time);
+  //console.log(time);
 
   var note = ''
   switch (e.which) {
@@ -104,7 +104,7 @@ var hardCodedMelody = function() {
 }
 
 var player = function(note) {
-  console.log(note);
+  //console.log(note);
 
   var playNote = function(id) {
     var audio = new Audio('http://www.freesound.org/data/previews/68/' + id + '_871124-lq.mp3');
@@ -146,7 +146,7 @@ var player = function(note) {
       playNote('68445');
       break;
     case 'G':
-      console.log('low g');
+      //console.log('low g');
       var audio = new Audio('http://www.freesound.org/data/previews/95/95332_1579599-lq.mp3');
       audio.play();
       break

@@ -15,6 +15,7 @@ var visualizer = function(type, newBlockersOrNotes) {
   //start with what the visualizer and simulation have in common:
   //basic world params
   var world = engine.world
+  console.log(world);
 // engine.render.bounds.max = {
 //   x: 2200,
 //   y:2000}
@@ -22,7 +23,7 @@ var visualizer = function(type, newBlockersOrNotes) {
 //     x: 2200,
 //     y:2000}
 
-  world.gravity.y = .5;
+  world.gravity.y = 0.5;
   var bodies = []
 
   // create circle (music player)
@@ -30,7 +31,7 @@ var visualizer = function(type, newBlockersOrNotes) {
 );
   circle.restitution = 1.1;
   circle.friction = 0;
-  // circle.frictionAir=0;
+  //circle.frictionAir=0;
   circle.groupId=1;
   bodies.push(circle)
 
