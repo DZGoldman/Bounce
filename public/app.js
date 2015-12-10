@@ -1,7 +1,7 @@
 // the main controller file
 //global
 timerStatus = false;
-var playedNotes= []
+var playedNotes= [];
 
 var Engine = Matter.Engine,
   World = Matter.World,
@@ -22,10 +22,21 @@ $(function() {
   })
 
   $('#stop').click(function () {
-    timerStatus=false
-    window.clearInterval(intervalID);
-    console.log(playedNotes);
-      visualizer('sim', playedNotes)
+    if (timerStatus) {
+      timerStatus=false
+      window.clearInterval(intervalID);
+      // console.log(playedNotes);
+          visualizer('sim', playedNotes)
+
+
+    }else{
+      //stop simulation
+      $('#world').empty();
+      loop=false
+      World.clear(world, false);
+    }
+
+
   })
 
 

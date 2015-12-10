@@ -10,11 +10,18 @@ var visualizer = function(type, newBlockersOrNotes) {
   if (type == 'vis') {
     var engine = Engine.create(  document.body );
   } else if (type == 'sim') {
-    var engine = Engine.create(document.body );
+    var engine = Engine.create(document.getElementById('world') );
   }
   //start with what the visualizer and simulation have in common:
   //basic world params
   var world = engine.world
+// engine.render.bounds.max = {
+//   x: 2200,
+//   y:2000}
+//   world.bounds.max = {
+//     x: 2200,
+//     y:2000}
+
   world.gravity.y = .3;
   var bodies = []
 
@@ -82,6 +89,8 @@ var visualizer = function(type, newBlockersOrNotes) {
 
   }
   else if (type=='sim') {
+     engine.render.options.wireframes = false
+     engine.render.options.background = 'grey';
       //set basic parameters
       engine.timing.timeScale =1;
       // create the blockers-
@@ -101,7 +110,7 @@ var visualizer = function(type, newBlockersOrNotes) {
       });
       // at each update
       Events.on(engine, "afterTick", function(event) {
-
+        // console.log(circle.velocity.y)
         if (newBlocker) {
 
 
@@ -165,17 +174,23 @@ var visualizer = function(type, newBlockersOrNotes) {
 
           currentNote += 1;
 
-
-
         };
-
-
 
       }else if (currentNote==notes.length) {
         console.log('The sim is over');
 
         currentNote+=1;
+
+        // world.bodies.forEach(function (body) {
+        //   body.isStatic=false
+        // })
+
+
+
         window.setTimeout(function () {
+          World.clear(world, false)
+          $('#world').empty();
+          //Engine.clear(engine, true)
            visualizer('sim', notes )
         }, 3000)
 
