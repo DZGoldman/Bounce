@@ -14,26 +14,29 @@ var visualizer = function(type, newBlockersOrNotes) {
   }
   //start with what the visualizer and simulation have in common:
   //basic world params
-  var world = engine.world
-  console.log(world);
-// engine.render.bounds.max = {
-//   x: 2200,
-//   y:2000}
-//   world.bounds.max = {
-//     x: 2200,
-//     y:2000}
+  var height = $(window).height(); var width = $(window).width();
+  engine.render.canvas.width = width;
+engine.render.canvas.height = height;
+
+var world = engine.world;
+world.bounds.max.y = height;
+world.bounds.max.x = width;
+
 
   world.gravity.y = 0.5;
   var bodies = []
 
   // create circle (music player)
-  var circle = Bodies.circle(300, 40, 8, 1000
+
+  var circle = Bodies.circle(width/2, 0, 8, 1000
 );
   circle.restitution = 1.1;
   circle.friction = 0;
   //circle.frictionAir=0;
   circle.groupId=1;
+  circle.render.fillStyle ='rgb(255, 255, 255)'
   bodies.push(circle)
+
 
 
   // create walls
@@ -77,6 +80,8 @@ var visualizer = function(type, newBlockersOrNotes) {
       collidedBodies.forEach(function (body) {
         //check if any of them are blockers (id of 2)
         if (body.groupId==2) {
+          //give it its background
+
           //play the approprite note...
           player(body.note);
           // make it ghostly
@@ -103,7 +108,14 @@ var visualizer = function(type, newBlockersOrNotes) {
         var collidedBodies = [event.pairs[0].bodyA, event.pairs[0].bodyB];
         //if the id is 2, change it back to one
         collidedBodies.forEach(function (body) {
+
+
           if (body.groupId==2) {
+            circle.render.fillStyle = body.backgroundColor;
+            body.render.fillStyle = body.backgroundColor;
+            window.setTimeout(function () {
+              body.render.fillStyle = 'rgb(255, 255, 255)'
+            }, 300)
             body.groupId=1;
             player(body.note)
           }
@@ -147,16 +159,52 @@ var visualizer = function(type, newBlockersOrNotes) {
           var accel = world.gravity.y * A
 
           var newBlocker = Bodies.rectangle(xLoc+ xVel*timeGap, yLoc+yVel*timeGap + 0.5*accel*timeGap*timeGap, 40, 40, {
-            render: {
-              strokeStyle: '#777'
-            },
+
             isStatic: true,
             angle: Math.random() * Math.PI,
             //create a new key called note
             note: notes[currentNote].pitch,
             groupId: 2,
-            bodyCount: currentNote
+            bodyCount: currentNote,
+
           });
+          var colors = function (pitch) {
+            var backgroundColor;
+            switch (pitch) {
+              case 'G':
+                    backgroundColor ='rgb(235, 61, 61)'
+              break;
+              case 'A':
+                backgroundColor = 'rgb(228, 145, 19)'
+              break;
+              case 'B':
+                backgroundColor = 'rgb(224, 236, 6)'
+              break;
+              case 'C':
+                backgroundColor = 'rgb(26, 224, 28)'
+              break;
+              case 'D':
+                backgroundColor = 'rgb(36, 214, 209)'
+              break;
+              case 'E':
+                backgroundColor = 'rgb(99, 18, 18)'
+              break;
+              case 'F#':
+                backgroundColor = 'rgb(164, 15, 182)'
+              break;
+              case 'hG':
+                backgroundColor = 'rgb(250, 114, 252)'
+              break;
+
+              default:
+
+            }
+            return backgroundColor
+          }
+
+          //newBlocker.render.fillStyle = colors(newBlocker.note);
+          newBlocker.backgroundColor =colors(newBlocker.note);
+
           if(newBlocker.position.y>world.bounds.max.y){
              Body.translate( newBlocker, {x:0,y:-world.bounds.max.y} );
           };
@@ -194,7 +242,8 @@ var visualizer = function(type, newBlockersOrNotes) {
           $('#world').empty();
           //Engine.clear(engine, true)
            visualizer('sim', notes )
-        }, 3000)
+          // visualizer('vis', newBlockers)
+        }, 1000)
 
           //Matter.Engine.clear(world)
 
