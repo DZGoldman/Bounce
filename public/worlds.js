@@ -124,6 +124,9 @@ world.bounds.max.x = width;
       // at each update
       Events.on(engine, "afterTick", function(event) {
         // console.log(circle.velocity.y)
+        if (kill) {
+          engine.enabled= false;
+        }
 
 
 
@@ -231,17 +234,30 @@ world.bounds.max.x = width;
 
         currentNote+=1;
 
+        Events.on(engine, "afterTick", function(event) {
+          if (circle.position.y>height-100) {
+              $('#world').empty();
+            Engine.clear(engine);
+
+            World.clear(world, false)
+            engine.enabled= false;
+
+            //Engine.clear(engine, true)
+             visualizer('sim', notes )
+
+          }
+        })
+
         // world.bodies.forEach(function (body) {
         //   body.isStatic=false
         // })
 
 
 
+
+
         window.setTimeout(function () {
-          World.clear(world, false)
-          $('#world').empty();
-          //Engine.clear(engine, true)
-           visualizer('sim', notes )
+
           // visualizer('vis', newBlockers)
         }, 1000)
 

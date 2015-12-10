@@ -1,6 +1,7 @@
 // the main controller file
 //global
 timerStatus = false;
+kill = false
 var playedNotes= [];
 
 var Engine = Matter.Engine,
@@ -17,28 +18,37 @@ $(function() {
 
   $(document).keydown(function() {
     if (!timerStatus) {
-        intervalID = startTimer();
+        //  playedNotes=[];
+          killSimulation();
+          intervalID = startTimer();
     }
   })
 
   $('#stop').click(function () {
-    if (timerStatus) {
+    $('#world').empty()
+      kill=false
       timerStatus=false
+      $('#stop').hide();
       window.clearInterval(intervalID);
       // console.log(playedNotes);
-          visualizer('sim', playedNotes)
+        console.log(playedNotes);
+          visualizer('sim', playedNotes);
 
 
-    }else{
-      //stop simulation
-      $('#world').empty();
-      loop=false
-      World.clear(world, false);
+    });
+
+    $('#stop-sim').click(function () {
+      killSimulation();
+      playedNotes=[];
+    })
+
+    var killSimulation = function () {
+      console.log('stopping the sim');
+      kill=true;
+      time=1;
+      timerStatus=false;
+      $('#stop').hide();
     }
-
-
-  })
-
 
 
 

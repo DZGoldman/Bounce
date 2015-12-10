@@ -2,6 +2,10 @@ body{
   background-color: grey;
 }
 
+#stop{
+  display: none;
+}
+
 #timer{
 border: 2px solid black;
 width: 150px;

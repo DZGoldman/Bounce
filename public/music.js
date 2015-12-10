@@ -2,14 +2,16 @@ console.log("Hello, Dave");
 var time=1
 var startTimer = function() {
   timerStatus = true;
+  $('#stop').show()
   //global
   var ticker = time*100;
   var intervalId = window.setInterval(function() {
     // console.log('?');
     ticker += 1;
-    time= Math.round(ticker) / 100
+    time= Math.round(ticker) / 100;
+    var display = Math.round(ticker-100) / 100;
     // console.log(time);
-    $('#timer').text(time)
+    $('#timer').text(display)
   }, 10);
   return intervalId
 }
@@ -24,7 +26,9 @@ var Note = function (pitch, time) {
 //piano
 
 $(document).keydown(function(e) {
+
   console.log('key pressed');
+
   //console.log(time);
 
   var note = ''
@@ -71,8 +75,10 @@ $(document).keydown(function(e) {
       return; // exit this handler for other keys
   };
   if (note) {
+    console.log('note',note);
     player(note);
     playedNotes.push( Note(note, time) )
+    console.log('allnotes',playedNotes);
   }
 
 });
