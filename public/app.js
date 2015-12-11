@@ -66,6 +66,20 @@ var piano = function () {
 }
 
 var simulator = function () {
+  var objectData = {data1: playedNotes}
+
+  $.ajax(
+    {
+    dataType: 'json',
+    data: objectData,
+    type: 'post',
+    url: '/new'
+  }
+).done(function (data) {
+    console.log(data);
+  })
+
+
   pianoState = false;  simState = true; restState = false; //insurance;
     $('#stop').show(); $('#start').hide(); $('#instructions').hide();
   console.log('sim time');
