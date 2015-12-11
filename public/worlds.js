@@ -34,7 +34,8 @@ world.bounds.max.x = width;
   circle.friction = 0;
   //circle.frictionAir=0;
   circle.groupId=1;
-  circle.render.fillStyle ='rgb(255, 255, 255)'
+  circle.render.fillStyle ='rgb(255, 255, 255)';
+
   bodies.push(circle)
 
 
@@ -55,7 +56,10 @@ world.bounds.max.x = width;
   // bodies.push(bottom, top, left, right);
 
   //add all bodies to world
-  World.add(world, bodies)
+  World.add(world, bodies);
+
+
+
 
   Engine.run(engine);
 
@@ -75,6 +79,7 @@ world.bounds.max.x = width;
     // TODO add some "finished" event
     // on collision, even collision...
     Events.on(engine, 'collisionEnd', function(event) {
+
       var collidedBodies = [event.pairs[0].bodyA, event.pairs[0].bodyB];
 
       collidedBodies.forEach(function (body) {
@@ -105,6 +110,7 @@ world.bounds.max.x = width;
       var allBlockers=[];
       // on collision, make it ghostly
       Events.on(engine, 'collisionEnd', function(event) {
+
         var collidedBodies = [event.pairs[0].bodyA, event.pairs[0].bodyB];
         //if the id is 2, change it back to one
         collidedBodies.forEach(function (body) {
@@ -176,6 +182,7 @@ world.bounds.max.x = width;
           //newBlocker.render.fillStyle = colors(newBlocker.note);
           newBlocker.backgroundColor =colors(newBlocker.note);
 
+
           if(newBlocker.position.y>world.bounds.max.y){
              Body.translate( newBlocker, {x:0,y:-world.bounds.max.y} );
           };
@@ -199,6 +206,7 @@ world.bounds.max.x = width;
 
       }else if (currentNote==notes.length) {
         console.log('The sim is over');
+
 
         currentNote+=1;
         window.setTimeout(function () {
