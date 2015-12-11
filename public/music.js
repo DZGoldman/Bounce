@@ -1,5 +1,6 @@
 console.log("Hello, Dave");
 
+//Note factory
 var Note = function(pitch, time) {
   return {
     pitch: pitch,
@@ -10,8 +11,8 @@ var Note = function(pitch, time) {
 
 var time = 1
 var startTimer = function() {
-  timerStatus = true;
-  $('#stop').show()
+  // timerStatus = true;
+  // $('#stop').show()
     //global
   var ticker = time * 100;
   var intervalId = window.setInterval(function() {
@@ -25,7 +26,7 @@ var startTimer = function() {
   return intervalId
 }
 
-
+//assigns each note to a color
 var colors = function(pitch) {
   var backgroundColor;
   switch (pitch) {
@@ -77,7 +78,7 @@ var colors = function(pitch) {
 
 
 //piano
-
+//plays a sound, lights up keyboard, and creates a new note and adds to note array when a key is pressed
 $(document).keydown(function(e) {
 
   console.log('key pressed');
@@ -147,7 +148,7 @@ $(document).keydown(function(e) {
     default:
       return; // exit this handler for other keys
   };
-  if (note) {
+  if (note && (restState||pianoState) ) {
     key.css('background-color', colors(note));
     window.setTimeout(function() {
       if(key.attr('id')[0]=='w'){
@@ -165,7 +166,7 @@ $(document).keydown(function(e) {
 });
 
 
-
+//function that actually plays the appropriate sound
 var player = function(note) {
   //console.log(note);
 
