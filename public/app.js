@@ -10,7 +10,9 @@ var Engine = Matter.Engine,
   Render = Matter.render,
   Events = Matter.Events,
   Vector = Matter.Vector,
-  Body = Matter.Body
+  Body = Matter.Body;
+
+  
 
 
 $(function() {

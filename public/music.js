@@ -1,5 +1,29 @@
 console.log("Hello, Dave");
 
+var Note = function(pitch, time) {
+  return {
+    pitch: pitch,
+    time: time
+  }
+};
+
+
+var time = 1
+var startTimer = function() {
+  timerStatus = true;
+  $('#stop').show()
+    //global
+  var ticker = time * 100;
+  var intervalId = window.setInterval(function() {
+    // console.log('?');
+    ticker += 1;
+    time = Math.round(ticker) / 100;
+    var display = Math.round(ticker - 100) / 100;
+    // console.log(time);
+    $('#timer').text(display)
+  }, 10);
+  return intervalId
+}
 
 
 var colors = function(pitch) {
@@ -51,31 +75,6 @@ var colors = function(pitch) {
   return backgroundColor
 };
 
-
-
-var time = 1
-var startTimer = function() {
-  timerStatus = true;
-  $('#stop').show()
-    //global
-  var ticker = time * 100;
-  var intervalId = window.setInterval(function() {
-    // console.log('?');
-    ticker += 1;
-    time = Math.round(ticker) / 100;
-    var display = Math.round(ticker - 100) / 100;
-    // console.log(time);
-    $('#timer').text(display)
-  }, 10);
-  return intervalId
-}
-
-var Note = function(pitch, time) {
-  return {
-    pitch: pitch,
-    time: time
-  }
-};
 
 //piano
 
@@ -149,7 +148,6 @@ $(document).keydown(function(e) {
       return; // exit this handler for other keys
   };
   if (note) {
-    console.log('note', note);
     key.css('background-color', colors(note));
     window.setTimeout(function() {
       if(key.attr('id')[0]=='w'){

@@ -2,6 +2,22 @@ body{
   background-color: grey;
 }
 
+
+#title{
+  color: black;
+  font-size: 50px;
+  margin-top: 20px;
+font-family: 'Montserrat', sans-serif;
+}
+
+#sub-title{
+  margin-top: 10px;
+  color: black;
+  font-size: 25px;
+  font-style: italic;
+}
+
+
 #stop{
   display: none;
 }
@@ -11,8 +27,8 @@ border: 2px solid black;
 width: 150px;
 height: 50px;
 margin: 10px;
-
 font-size: 30px;
+display: inline-block;
 }
 
 #piano-container{
@@ -20,8 +36,8 @@ font-size: 30px;
 }
 .white-button{
   background-color: white;
-  width: 70px;
-  height: 250px;
+  width: 60px;
+  height: 200px;
   margin: 5px;
   display: inline-block;
 
@@ -30,7 +46,7 @@ font-size: 30px;
 .black-button{
   background-color: black;
   width:40px;
-  height: 125px;
+  height: 100px;
   z-index: 2;
   display: inline-block;
   position: absolute;
