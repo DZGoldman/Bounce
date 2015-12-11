@@ -10,6 +10,9 @@ var visualizer = function(type, newBlockersOrNotes) {
   if (type == 'vis') {
     var engine = Engine.create(  document.body );
   } else if (type == 'sim') {
+
+
+
     var engine = Engine.create(document.getElementById('world') );
   }
   //start with what the visualizer and simulation have in common:
@@ -18,6 +21,10 @@ var visualizer = function(type, newBlockersOrNotes) {
   //$("html, body").attr('height', height)
   engine.render.canvas.width = width;
   engine.render.canvas.height = height;
+
+  $('#world-container').height(height);
+  $('#world-container').height(width);
+
 
 var world = engine.world;
 world.bounds.max.y = height;
@@ -217,10 +224,10 @@ world.bounds.max.x = width;
       //  Events.on(engine, "afterTick", function(event) {
         //  if (circle.position.y>height-100) {
         console.log('test');
-        //  $("html, body").animate({ scrollTop: $(document).height() }, 1);
+        //  $("html, body").animate({ scrollTop: $(document).height() }, 1000);
 
             $('#world').empty();
-            //$("html, body").scrollTop( $(document).height())
+          //  $("html, body").scrollTop( $(document).height())
 
             //
             Engine.clear(engine);
@@ -235,7 +242,7 @@ world.bounds.max.x = width;
 
         //  }
       //  })
-    }, 1000)
+    }, 2000)
 
         // world.bodies.forEach(function (body) {
         //   body.isStatic=false

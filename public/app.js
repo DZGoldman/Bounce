@@ -77,7 +77,7 @@ var simulator = function () {
   // actually run the thing;
 
    visualizer('sim', playedNotes);
-   $("html, body").animate({ scrollTop: $(document).height() }, 1500 );
+   $("html, body").animate({ scrollTop: $(window).height()-920 }, 1200 );
 
 
 }
