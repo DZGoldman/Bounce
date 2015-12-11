@@ -14,7 +14,7 @@ var visualizer = function(type, newBlockersOrNotes) {
   }
   //start with what the visualizer and simulation have in common:
   //basic world params
-  var height = $(window).height(); var width = $(window).width();
+  var height = $(window).height()-150; var width = $(window).width();
   engine.render.canvas.width = width;
 engine.render.canvas.height = height;
 
@@ -30,7 +30,7 @@ world.bounds.max.x = width;
 
   var circle = Bodies.circle(width/2, 0, 8, 1000
 );
-  circle.restitution = 1.1;
+  circle.restitution = 1.2;
   circle.friction = 0;
   //circle.frictionAir=0;
   circle.groupId=1;
@@ -171,39 +171,7 @@ world.bounds.max.x = width;
             bodyCount: currentNote,
 
           });
-          var colors = function (pitch) {
-            var backgroundColor;
-            switch (pitch) {
-              case 'G':
-                    backgroundColor ='rgb(235, 61, 61)'
-              break;
-              case 'A':
-                backgroundColor = 'rgb(228, 145, 19)'
-              break;
-              case 'B':
-                backgroundColor = 'rgb(224, 236, 6)'
-              break;
-              case 'C':
-                backgroundColor = 'rgb(26, 224, 28)'
-              break;
-              case 'D':
-                backgroundColor = 'rgb(36, 214, 209)'
-              break;
-              case 'E':
-                backgroundColor = 'rgb(99, 18, 18)'
-              break;
-              case 'F#':
-                backgroundColor = 'rgb(164, 15, 182)'
-              break;
-              case 'hG':
-                backgroundColor = 'rgb(250, 114, 252)'
-              break;
 
-              default:
-
-            }
-            return backgroundColor
-          }
 
           //newBlocker.render.fillStyle = colors(newBlocker.note);
           newBlocker.backgroundColor =colors(newBlocker.note);
@@ -236,11 +204,14 @@ world.bounds.max.x = width;
 
         Events.on(engine, "afterTick", function(event) {
           if (circle.position.y>height-100) {
-              $('#world').empty();
+
+            $('#world').empty();
             Engine.clear(engine);
 
             World.clear(world, false)
+            Matter.Composite.clear(world, false)
             engine.enabled= false;
+
 
             //Engine.clear(engine, true)
              visualizer('sim', notes )

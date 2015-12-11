@@ -1,22 +1,76 @@
 console.log("Hello, Dave");
-var time=1
+
+
+
+var colors = function(pitch) {
+  var backgroundColor;
+  switch (pitch) {
+    case 'G':
+      backgroundColor = 'rgb(235, 61, 61)'
+      break;
+    case 'G#':
+      backgroundColor = 'rgb(223, 65, 242)'
+      break;
+    case 'A':
+      backgroundColor = 'rgb(228, 145, 19)'
+      break;
+    case 'A#':
+      backgroundColor = 'rgb(213, 0, 0)'
+      break;
+    case 'B':
+      backgroundColor = 'rgb(224, 236, 6)'
+      break;
+    case 'C':
+      backgroundColor = 'rgb(26, 224, 28)'
+      break;
+    case 'C#':
+      backgroundColor = 'rgb(199, 217, 0)'
+      break;
+    case 'D':
+      backgroundColor = 'rgb(36, 214, 209)';
+      break;
+    case 'D#':
+      backgroundColor = 'rgb(26, 71, 208)'
+      break;
+    case 'E':
+      backgroundColor = 'rgb(99, 18, 18)'
+      break;
+    case 'F':
+      backgroundColor = 'rgb(40, 238, 23)'
+      break;
+    case 'F#':
+      backgroundColor = 'rgb(164, 15, 182)'
+      break;
+    case 'hG':
+      backgroundColor = 'rgb(250, 114, 252)'
+      break;
+
+    default:
+
+  }
+  return backgroundColor
+};
+
+
+
+var time = 1
 var startTimer = function() {
   timerStatus = true;
   $('#stop').show()
-  //global
-  var ticker = time*100;
+    //global
+  var ticker = time * 100;
   var intervalId = window.setInterval(function() {
     // console.log('?');
     ticker += 1;
-    time= Math.round(ticker) / 100;
-    var display = Math.round(ticker-100) / 100;
+    time = Math.round(ticker) / 100;
+    var display = Math.round(ticker - 100) / 100;
     // console.log(time);
     $('#timer').text(display)
   }, 10);
   return intervalId
 }
 
-var Note = function (pitch, time) {
+var Note = function(pitch, time) {
   return {
     pitch: pitch,
     time: time
@@ -34,42 +88,60 @@ $(document).keydown(function(e) {
   var note = ''
   switch (e.which) {
     case 65:
-    var note ='G';
-    console.log('hi');
-      //$('label[for=button-1]' ).attr('background', 'black')
+      var note = 'G';
+      var key = $('#white-key-0');
+      break;
+    case 87: //w
+      var note = 'G#'
+      var key= $('#black-key-0')
       break;
     case 83: //s
       var note = 'A'
-            break;
-    case 65:
+      var key = $('#white-key-1');
+    break;
+
+    case 69: //s
       var note = 'A#'
-      break;
+      var key = $('#black-key-1');
+    break;
     case 68: //d
       var note = 'B'
-            break;
+      var key = $('#white-key-2');
+      break;
     case 70: //f
       var note = 'C'
-            break;
-    case 65:
+      var key = $('#white-key-3');
+      break;
+
+    case 84:
       var note = 'C#'
+      var key = $('#black-key-2');
       break;
     case 71: //g
       var note = 'D'
-            break;
-    case 65:
-      var note = 'D#'
+      var key = $('#white-key-4');
+      break;
+
+    case 89:
+      var note = 'D#';
+      var key = $('#black-key-3');
       break;
     case 72: //h
       var note = 'E'
-            break;
-    case 65:
+      var key = $('#white-key-5');
+      break;
+
+    case 85:
       var note = 'F'
-            break;
+      var key = $('#black-key-4')
+      break;
     case 74: //j
       var note = 'F#'
+      var key = $('#white-key-6');
       break;
     case 75: //k
       var note = 'hG'
+      var key = $('#white-key-7');
 
       break
 
@@ -77,39 +149,24 @@ $(document).keydown(function(e) {
       return; // exit this handler for other keys
   };
   if (note) {
-    console.log('note',note);
+    console.log('note', note);
+    key.css('background-color', colors(note));
+    window.setTimeout(function() {
+      if(key.attr('id')[0]=='w'){
+      key.css('background-color', 'white')
+    }else{
+      key.css('background-color', 'black')
+    }
+    }, 200)
+
     player(note);
-    playedNotes.push( Note(note, time) )
-    console.log('allnotes',playedNotes);
+    playedNotes.push(Note(note, time))
+    console.log('allnotes', playedNotes);
   }
 
 });
 
-var hardCodedMelody = function() {
-  var notesArray = [{
 
-      pitch: 'C',
-      time: 1
-    }, {
-      pitch: 'D',
-      time: 2
-    }, {
-      pitch: 'E',
-      time: 3
-    }, {
-      pitch: 'F',
-      time: 4
-    }, {
-      pitch: 'G',
-      time: 5
-    }
-
-
-  ];
-
-  return notesArray
-
-}
 
 var player = function(note) {
   //console.log(note);
@@ -161,67 +218,7 @@ var player = function(note) {
     case 'hG':
       playNote('68448');
       break;
-
-
   }
 
 
 }
-
-
-
-// var notesArray = [{
-//     pitch: 'G',
-//     time: 1
-//   }, {
-//     pitch: 'C',
-//     time: 2
-//   }, {
-//     pitch: 'E',
-//     time: 5
-//   }, {
-//     pitch: 'C',
-//     time: 5.5
-//   }, {
-//     pitch: 'D',
-//     time: 6
-//   }, {
-//     pitch: 'C',
-//     time: 9
-//   }, {
-//     pitch: 'A',
-//     time: 10
-//   }
-// ,{pitch:'G',
-// time: 13},
-// {pitch:'G',
-// time: 14},
-// {pitch:'C',
-// time: 17},
-// {pitch:'E',
-// time: 18},
-// {pitch:'C',
-// time: 21},
-// {pitch:'E',
-// time: 22},
-// {pitch:'D',
-// time: 25},
-// {pitch:'G',
-// time: 26}
-
-
-// pitch: 'D',
-// time: 1
-// }, {
-// pitch: 'A',
-// time: 2
-// }, {
-// pitch: 'D',
-// time: 3
-// }, {
-// pitch: 'A',
-// time: 5
-// }, {
-// pitch: 'D',
-// time: 7
-// },

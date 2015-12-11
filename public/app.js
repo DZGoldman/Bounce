@@ -14,7 +14,7 @@ var Engine = Matter.Engine,
 
 
 $(function() {
-  var notes = hardCodedMelody()
+  //var notes = hardCodedMelody()
 
   $(document).keydown(function() {
     if (!timerStatus) {
@@ -50,7 +50,7 @@ $(function() {
       $('#stop').hide();
     }
 
-    
+
 
 
 })
