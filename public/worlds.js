@@ -201,9 +201,11 @@ world.bounds.max.x = width;
         console.log('The sim is over');
 
         currentNote+=1;
+        window.setTimeout(function () {
 
-        Events.on(engine, "afterTick", function(event) {
-          if (circle.position.y>height-100) {
+
+      //  Events.on(engine, "afterTick", function(event) {
+        //  if (circle.position.y>height-100) {
 
             $('#world').empty();
             Engine.clear(engine);
@@ -216,8 +218,9 @@ world.bounds.max.x = width;
             //Engine.clear(engine, true)
              visualizer('sim', notes )
 
-          }
-        })
+        //  }
+      //  })
+    }, 1000)
 
         // world.bodies.forEach(function (body) {
         //   body.isStatic=false
