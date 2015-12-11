@@ -14,14 +14,15 @@ var visualizer = function(type, newBlockersOrNotes) {
   }
   //start with what the visualizer and simulation have in common:
   //basic world params
-  var height = $(window).height()-150; var width = $(window).width();
+  var height = $(window).height()-100; var width = $(window).width();
+  //$("html, body").attr('height', height)
   engine.render.canvas.width = width;
-engine.render.canvas.height = height;
+  engine.render.canvas.height = height;
 
 var world = engine.world;
 world.bounds.max.y = height;
 world.bounds.max.x = width;
-
+//$('#world').attr('height', height)
 
   world.gravity.y = 0.5;
   var bodies = []
@@ -100,6 +101,7 @@ world.bounds.max.x = width;
 
   }
   else if (type=='sim') {
+
      engine.render.options.wireframes = false
      engine.render.options.background = 'grey';
       //set basic parameters
@@ -214,8 +216,13 @@ world.bounds.max.x = width;
 
       //  Events.on(engine, "afterTick", function(event) {
         //  if (circle.position.y>height-100) {
+        console.log('test');
+        //  $("html, body").animate({ scrollTop: $(document).height() }, 1);
 
             $('#world').empty();
+            //$("html, body").scrollTop( $(document).height())
+
+            //
             Engine.clear(engine);
 
             World.clear(world, false)

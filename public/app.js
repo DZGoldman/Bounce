@@ -4,6 +4,10 @@ var kill = false
 var playedNotes = [];
 var timerID;
 
+window.onkeydown = function(e) {
+  return !(e.keyCode == 32);
+};
+
 var Engine = Matter.Engine,
   World = Matter.World,
   Bodies = Matter.Bodies,
@@ -48,7 +52,9 @@ var rest=  function () {
   playedNotes = [];
   kill= true;
   time= 1;
-  $('#timer').text('0:00')
+  $('#timer').text('0:00');
+  $("html, body").animate({ scrollTop: 0 }, 900);
+
 };
 rest()
 
@@ -69,7 +75,10 @@ var simulator = function () {
   $('#world').empty(); //is this enough?;
   kill = false;
   // actually run the thing;
+
    visualizer('sim', playedNotes);
+   $("html, body").animate({ scrollTop: $(document).height() }, 1500 );
+
 
 }
 
