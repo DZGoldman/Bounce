@@ -23,11 +23,15 @@ mongoose.connect('mongodb://localhost/tunendrop', (err) => {
    }
 });
 
-app.post('/new', function (req , res) {
-  var newNoteArray = req.body.data1;
-  var newMelody = new Melody();
-  newMelody.noteSequence = newNoteArray;
+// set up a default route
+app.get('/', function(req,res){
+  res.sendFile(__dirname+'/public/index.html')
+})
 
+
+app.post('/new', function (req , res) {
+  var newMelody = new Melody();
+  newMelody.noteSequence = req.body.data1;
   newMelody.save(function (err) {
     if (err) {
       throw err;
@@ -36,11 +40,16 @@ app.post('/new', function (req , res) {
   res.send(req.body)
 })
 
+app.get('/recentlycreated', function (req, res) {
+//  db.melodies.find().sort({_id:-1}).limit(3)
+   Melody.find({}, function (err, melodies) {
+    console.log(melodies);
+    res.send(melodies.slice(Math.max(melodies.length - 5, 1)))
+  })
 
-// set up a default route
-app.get('/', function(req,res){
-  res.sendFile(__dirname+'/public/index.html')
 })
+
+
 
 // listen on a port
 app.listen(3000, function(){

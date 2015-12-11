@@ -34,6 +34,7 @@ $(function() {
       piano()
         //spacebar triggers simState from piano state
     }else if (e.keyCode==32 && pianoState) {
+      saveMelody()
       simulator()
     }
 
@@ -66,19 +67,6 @@ var piano = function () {
 }
 
 var simulator = function () {
-  var objectData = {data1: playedNotes}
-
-  $.ajax(
-    {
-    dataType: 'json',
-    data: objectData,
-    type: 'post',
-    url: '/new'
-  }
-).done(function (data) {
-    console.log(data);
-  })
-
 
   pianoState = false;  simState = true; restState = false; //insurance;
     $('#stop').show(); $('#start').hide(); $('#instructions').hide();
@@ -94,6 +82,19 @@ var simulator = function () {
    $("html, body").animate({ scrollTop: $(window).height()-920 }, 1200 );
 
 
+}
+
+var saveMelody = function () {
+  var objectData = {data1: playedNotes}
+
+  $.ajax(
+    {
+    dataType: 'json',
+    data: objectData,
+    type: 'post',
+    url: '/new'
+  }
+)
 }
 
 
