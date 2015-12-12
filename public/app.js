@@ -37,9 +37,28 @@ $(function() {
       saveMelody()
       simulator()
     }
-
-
   });
+
+  $.get('/recentlycreated').done(function (data) {
+    data.forEach(function (melody) {
+      //console.log(melody);
+      var $melodyDiv = $('<div>');
+      $melodyDiv.attr('class', 'top-five');
+
+
+      $imageThing = $('<div>');
+      $imageThing.attr('class', 'image');
+      $imageThing.text('hi')
+
+      $melodyDiv.append($imageThing)
+
+      $('#last-five-container').append($melodyDiv)
+
+
+    })
+  })
+
+
 
 })
 

@@ -170,13 +170,13 @@ world.bounds.max.x = width;
 
           var xVel= circle.velocity.x*V;
           var yVel = circle.velocity.y*V;
-          var timeGap = 0.3;
+          var timeGap = 0.2;
           var xLoc = circle.position.x;
           var yLoc = circle.position.y;
 
           var accel = world.gravity.y * A
 
-          var newBlocker = Bodies.rectangle(xLoc+ xVel*timeGap, yLoc+yVel*timeGap + 0.5*accel*timeGap*timeGap, 40, 40, {
+          var newBlocker = Bodies.rectangle(xLoc+ xVel*timeGap, yLoc+yVel*timeGap + 0.5*accel*timeGap*timeGap, 60, 10, {
 
             isStatic: true,
             angle: Math.random() * Math.PI,

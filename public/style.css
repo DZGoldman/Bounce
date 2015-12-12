@@ -8,6 +8,7 @@ body{
   font-size: 50px;
   margin-top: 20px;
 font-family: 'Montserrat', sans-serif;
+/*border: 2px solid black*/
 }
 
 #sub-title{
@@ -15,6 +16,7 @@ font-family: 'Montserrat', sans-serif;
   color: black;
   font-size: 25px;
   font-style: italic;
+  /*border: 2px solid black*/
 }
 
 
@@ -33,13 +35,25 @@ display: inline-block;
 
 #piano-container{
   margin: 50px;
+  /*border: 1px solid black;*/
+  display: inline-block;
 }
 .white-button{
   background-color: white;
-  width: 60px;
+  width: 50px;
   height: 200px;
   margin: 5px;
   display: inline-block;
+
+}
+
+#last-five-container{
+  /*border: 2px solid blue;*/
+  display: inline-block;
+  width: 35%;
+  height: 200px;
+  float: right;
+  margin-top: 50px
 
 }
 
@@ -50,5 +64,15 @@ display: inline-block;
   z-index: 2;
   display: inline-block;
   position: absolute;
+}
+
+.top-five{
+    margin: 10px;
+}
+
+.image{
+  background-color: lightblue;
+  width: 150px;
+  height: 10px;
 
 }
