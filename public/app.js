@@ -40,7 +40,7 @@ $(function() {
   });
 
   $.get('/recentlycreated').done(function (data) {
-    data.forEach(function (melody) {
+    data.reverse().forEach(function (melody) {
       //console.log(melody);
       var $melodyDiv = $('<div>');
       $melodyDiv.attr('class', 'top-five');
@@ -48,10 +48,15 @@ $(function() {
 
       $imageThing = $('<div>');
       $imageThing.attr('class', 'image');
-      $imageThing.text('hi')
+    ;
+      $imageThing.css('background-color', colors(melody.noteSequence[0].pitch ))
 
       $melodyDiv.append($imageThing)
 
+      $melodyDiv.click(function () {
+        playedNotes=melody.noteSequence;
+        simulator()
+      })
       $('#last-five-container').append($melodyDiv)
 
 
@@ -68,7 +73,7 @@ $(function() {
 
 var rest=  function () {
   restState = true; simState = false; pianoState = false //insurance
-  $('#stop').hide(); $('#start').hide(); $('#instructions').show();
+  $('#stop').hide('fast'); $('#start').hide('fast'); $('#instructions').show('fast');$('#last-five-container').fadeIn('slow')
   playedNotes = [];
   kill= true;
   time= 1;
@@ -80,7 +85,7 @@ rest()
 
 var piano = function () {
   pianoState = true; restState = false; simState = false //insurance;
-  $('#stop').hide(); $('#start').show(); $('#instructions').hide();
+  $('#stop').hide('fast'); $('#start').show('fast'); $('#instructions').hide('fast');$('#last-five-container').fadeOut('slow')
   timerID = startTimer();
 
 }
@@ -88,7 +93,7 @@ var piano = function () {
 var simulator = function () {
 
   pianoState = false;  simState = true; restState = false; //insurance;
-    $('#stop').show(); $('#start').hide(); $('#instructions').hide();
+    $('#stop').show('fast'); $('#start').hide('fast'); $('#instructions').hide('fast');$('#last-five-container').fadeOut('slow')
   console.log('sim time');
   //stop timer
   window.clearInterval(timerID)

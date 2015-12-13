@@ -43,7 +43,7 @@ app.post('/new', function (req , res) {
 app.get('/recentlycreated', function (req, res) {
 //  db.melodies.find().sort({_id:-1}).limit(3)
    Melody.find({}, function (err, melodies) {
-    res.send(melodies.slice(Math.max(melodies.length - 5, 1)))
+    res.send(melodies.slice(Math.max(melodies.length - 50, 1)))
   })
 
 })
