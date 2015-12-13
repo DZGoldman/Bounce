@@ -4,7 +4,7 @@ body{
 
 .container-title{
   background-color: grey;
-  border-bottom: 3px solid black
+  border: 3px solid black
 }
 
 #title{
@@ -52,21 +52,10 @@ display: inline-block;
   height: 200px;
   margin: 5px;
   display: inline-block;
+  /*position: absolute;*/
 
 }
 
-#last-five-container{
-  /*border: 2px solid blue;*/
-  display: inline-block;
-  font-size: 30px;
-  height: 1000px;
-  overflow-y: scroll;
-  float: right;
-  margin-top: 50px;
-  margin-right: 50px;
-  /*border: 2px solid black*/
-
-}
 
 .black-button{
   background-color: black;
@@ -75,7 +64,42 @@ display: inline-block;
   z-index: 2;
   display: inline-block;
   position: absolute;
+  margin-bottom: 100px;
 }
+
+#black-key-0{
+  left: 100px
+}
+#black-key-1{
+  left: 170px
+}
+#black-key-2{
+  left: 295px
+}
+#black-key-3{
+  left: 360px
+}
+#black-key-4{
+  left: 425px
+}
+
+
+#last-five-container{
+  /*border: 2px solid blue;*/
+  display: inline-block;
+  font-size: 30px;
+  height: 1000px;
+  overflow-y: scroll;
+  /*float: right;*/
+  margin-top: 50px;
+  margin-right: 50px;
+  position: absolute;
+  right: 90px;
+  top:160px;
+  /*border: 2px solid black*/
+
+}
+
 
 .top-five{
     margin: 20px;

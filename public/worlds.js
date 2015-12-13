@@ -31,7 +31,7 @@ world.bounds.max.y = height;
 world.bounds.max.x = width;
 //$('#world').attr('height', height)
 
-  world.gravity.y = 0.5;
+  world.gravity.y = 0.6;
   var bodies = []
 
   // create circle (music player)
@@ -178,7 +178,7 @@ world.bounds.max.x = width;
 
           var newBlocker = Bodies.rectangle(xLoc+ xVel*timeGap, yLoc+yVel*timeGap + 0.5*accel*timeGap*timeGap, 60, 10, {
 
-            isStatic: true,
+
             angle: Math.random() * Math.PI,
             //create a new key called note
             note: notes[currentNote].pitch,
@@ -187,6 +187,7 @@ world.bounds.max.x = width;
 
           });
 
+          newBlocker.isStatic = true;
 
           //newBlocker.render.fillStyle = colors(newBlocker.note);
           newBlocker.backgroundColor =colors(newBlocker.note);
@@ -213,36 +214,39 @@ world.bounds.max.x = width;
 
         };
 
-      }else if (currentNote==notes.length) {
+      }else if (currentNote==notes.length ) {
+
         console.log('The sim is over');
-
-
         currentNote+=1;
+        allBlockers.forEach(function (blocker, index) {
+          window.setTimeout(function () {
+              blocker.isStatic = false
+          },150*index)
+
+        })
+
+        Events.on(engine, "afterTick", function(event) {
+          if (circle.position.y>world.bounds.max.y-100) {
+            circle.mass=Infinity
+
+          };
+          if (allBlockers[allBlockers.length-1].position.y>world.bounds.max.y-100) {
+
+
         window.setTimeout(function () {
-
-
-      //  Events.on(engine, "afterTick", function(event) {
-        //  if (circle.position.y>height-100) {
         console.log('test');
-        //  $("html, body").animate({ scrollTop: $(document).height() }, 1000);
-
             $('#world').empty();
-          //  $("html, body").scrollTop( $(document).height())
-
-            //
             Engine.clear(engine);
-
             World.clear(world, false)
             Matter.Composite.clear(world, false)
             engine.enabled= false;
-
-
             //Engine.clear(engine, true)
              visualizer('sim', notes )
+    }, 10)
+  }
 
-        //  }
-      //  })
-    }, 2000)
+
+  })
 
         // world.bodies.forEach(function (body) {
         //   body.isStatic=false

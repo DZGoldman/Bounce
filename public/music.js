@@ -9,7 +9,7 @@ var Note = function(pitch, time) {
 };
 
 
-var time = 1
+var time = 1.2
 var startTimer = function() {
   // timerStatus = true;
   // $('#stop').show()

@@ -47,15 +47,20 @@ $(function() {
       $imageThing = $('<div>');
       $imageThing.attr('class', 'image');
     ;
-      $imageThing.css('background-color', colors(melody.noteSequence[0].pitch ))
 
-      $melodyDiv.append($imageThing)
+      if (melody.noteSequence[0]) {
+          var firstColor = colors(melody.noteSequence[0].pitch);
+        $imageThing.css('background-color', firstColor)
 
-      $melodyDiv.click(function () {
-        playedNotes=melody.noteSequence;
-        simulator()
-      })
-      $('#last-five-container').append($melodyDiv)
+        $melodyDiv.append($imageThing)
+
+        $melodyDiv.click(function () {
+          playedNotes=melody.noteSequence;
+          simulator()
+        })
+        $('#last-five-container').append($melodyDiv)
+      }
+
 
 
     })
@@ -74,7 +79,7 @@ var rest=  function () {
   $('#stop').hide('fast'); $('#start').hide('fast'); $('#instructions').show('fast');$('#last-five-container').fadeIn('slow')
   playedNotes = [];
   kill= true;
-  time= 1;
+  time= 1.2;
   $('#timer').text('0:00');
   $("html, body").animate({ scrollTop: 0 }, 900);
 
