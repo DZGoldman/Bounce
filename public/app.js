@@ -44,8 +44,6 @@ $(function() {
       //console.log(melody);
       var $melodyDiv = $('<div>');
       $melodyDiv.attr('class', 'top-five');
-
-
       $imageThing = $('<div>');
       $imageThing.attr('class', 'image');
     ;
