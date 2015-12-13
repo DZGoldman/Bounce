@@ -43,6 +43,7 @@ world.bounds.max.x = width;
   //circle.frictionAir=0;
   circle.groupId=1;
   circle.render.fillStyle ='rgb(255, 255, 255)';
+  circle.render.strokeStyle =' rgb(255, 255, 255)'
 
   bodies.push(circle)
 
@@ -110,7 +111,7 @@ world.bounds.max.x = width;
   else if (type=='sim') {
 
      engine.render.options.wireframes = false
-     engine.render.options.background = 'grey';
+     engine.render.options.background = '#b3c2bf';
       //set basic parameters
       engine.timing.timeScale =1;
       // create the blockers-
@@ -127,9 +128,12 @@ world.bounds.max.x = width;
 
           if (body.groupId==2) {
             circle.render.fillStyle = body.backgroundColor;
+            circle.render.strokeStyle = body.backgroundColor;
             body.render.fillStyle = body.backgroundColor;
+            body.render.strokeStyle = body.backgroundColor;
             window.setTimeout(function () {
               body.render.fillStyle = 'rgb(255, 255, 255)'
+              body.render.strokeStyle = 'rgb(255, 255, 255)'
             }, 300)
             body.groupId=1;
             player(body.note)
@@ -142,8 +146,6 @@ world.bounds.max.x = width;
         if (kill) {
           engine.enabled= false;
         }
-
-
 
         if(circle.position.y>world.bounds.max.y){
            Body.translate( circle, {x:0,y:-world.bounds.max.y} );
@@ -166,7 +168,7 @@ world.bounds.max.x = width;
           // figure out its location
 
           var V = 60.27;
-          var A = 10.04
+          var A = 10.04;
 
           var xVel= circle.velocity.x*V;
           var yVel = circle.velocity.y*V;
@@ -188,6 +190,8 @@ world.bounds.max.x = width;
           });
 
           newBlocker.isStatic = true;
+          newBlocker.render.fillStyle =' rgb(255, 255, 255)';
+          newBlocker.render.strokeStyle =' rgb(255, 255, 255)';
 
           //newBlocker.render.fillStyle = colors(newBlocker.note);
           newBlocker.backgroundColor =colors(newBlocker.note);
@@ -226,12 +230,19 @@ world.bounds.max.x = width;
         })
 
         Events.on(engine, "afterTick", function(event) {
-          if (circle.position.y>world.bounds.max.y-100) {
+          if (circle.position.y>world.bounds.max.y-10) {
             circle.mass=Infinity
 
           };
-          if (allBlockers[allBlockers.length-1].position.y>world.bounds.max.y-100) {
+          var allFallen = true;
 
+          allBlockers.forEach(function (blocker) {
+            if(blocker.position.y<world.bounds.max.y){
+              allFallen = false;
+            }
+          })
+
+          if (allFallen) {
 
         window.setTimeout(function () {
         console.log('test');
@@ -247,13 +258,6 @@ world.bounds.max.x = width;
 
 
   })
-
-        // world.bodies.forEach(function (body) {
-        //   body.isStatic=false
-        // })
-
-
-
 
 
         window.setTimeout(function () {
@@ -271,9 +275,6 @@ world.bounds.max.x = width;
     //neither sim not vis
     console.log("You have made a very serious mistake");
   }
-
-
-
 
 
 

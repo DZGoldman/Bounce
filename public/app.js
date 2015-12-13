@@ -50,7 +50,8 @@ $(function() {
 
       if (melody.noteSequence[0]) {
           var firstColor = colors(melody.noteSequence[0].pitch);
-        $imageThing.css('background-color', firstColor)
+        //$imageThing.css('background-color', 'black');
+      //  $imageThing.text('CLICK ME');
 
         $melodyDiv.append($imageThing)
 
@@ -66,12 +67,7 @@ $(function() {
     })
   })
 
-
-
 })
-
-
-
 
 
 var rest=  function () {
@@ -106,7 +102,7 @@ var simulator = function () {
   // actually run the thing;
 
    visualizer('sim', playedNotes);
-   $("html, body").animate({ scrollTop: $(window).height()-920 }, 1200 );
+   $("html, body").animate({ scrollTop: $(window).height()-835 }, 1200 );
 
 
 }
@@ -123,46 +119,3 @@ var saveMelody = function () {
   }
 )
 }
-
-
-
-
-
-
-
-
-// $(document).keydown(function() {
-//   if (!timerStatus) {
-//       //  playedNotes=[];
-//         killSimulation();
-//         intervalID = startTimer();
-//   }
-// })
-//
-// $('#start').click(function () {
-//   $('#world').empty()
-//     kill=false
-//     timerStatus=false
-//     $('#stop').hide();
-//     window.clearInterval(intervalID);
-//     // console.log(playedNotes);
-//       console.log(playedNotes);
-//         visualizer('sim', playedNotes);
-//
-//
-//   });
-//
-//   $('#stop').click(function () {
-//     killSimulation();
-//     playedNotes=[];
-//});
-
-
-// var killSimulation = function() {
-//   console.log('stopping the sim');
-//   kill = true;
-//   time = 1;
-//   timerStatus = false;
-//   $('#stop').hide();
-//   kill = false
-// }

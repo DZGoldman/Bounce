@@ -154,7 +154,7 @@ $(document).keydown(function(e) {
       if(key.attr('id')[0]=='w'){
       key.css('background-color', 'white')
     }else{
-      key.css('background-color', 'black')
+      key.css('background-color', '#3b3a36')
     }
     }, 200)
 
