@@ -8,19 +8,13 @@ var Note = function(pitch, time) {
   }
 };
 
-
 var time = 1.2
 var startTimer = function() {
-  // timerStatus = true;
-  // $('#stop').show()
-    //global
   var ticker = time * 100;
   var intervalId = window.setInterval(function() {
-    // console.log('?');
     ticker += 1;
     time = Math.round(ticker) / 100;
     var display = Math.round(ticker - 100) / 100;
-    // console.log(time);
     $('#timer').text(display)
   }, 10);
   return intervalId
@@ -80,11 +74,6 @@ var colors = function(pitch) {
 //piano
 //plays a sound, lights up keyboard, and creates a new note and adds to note array when a key is pressed
 $(document).keydown(function(e) {
-
-  console.log('key pressed');
-
-  //console.log(time);
-
   var note = ''
   switch (e.which) {
     case 65:
@@ -93,17 +82,16 @@ $(document).keydown(function(e) {
       break;
     case 87: //w
       var note = 'G#'
-      var key= $('#black-key-0')
+      var key = $('#black-key-0')
       break;
     case 83: //s
       var note = 'A'
       var key = $('#white-key-1');
-    break;
-
+      break;
     case 69: //s
       var note = 'A#'
       var key = $('#black-key-1');
-    break;
+      break;
     case 68: //d
       var note = 'B'
       var key = $('#white-key-2');
@@ -112,7 +100,6 @@ $(document).keydown(function(e) {
       var note = 'C'
       var key = $('#white-key-3');
       break;
-
     case 84:
       var note = 'C#'
       var key = $('#black-key-2');
@@ -121,7 +108,6 @@ $(document).keydown(function(e) {
       var note = 'D'
       var key = $('#white-key-4');
       break;
-
     case 89:
       var note = 'D#';
       var key = $('#black-key-3');
@@ -130,7 +116,6 @@ $(document).keydown(function(e) {
       var note = 'E'
       var key = $('#white-key-5');
       break;
-
     case 85:
       var note = 'F'
       var key = $('#black-key-4')
@@ -142,39 +127,33 @@ $(document).keydown(function(e) {
     case 75: //k
       var note = 'hG'
       var key = $('#white-key-7');
-
       break
-
     default:
-      return; // exit this handler for other keys
+      return;
   };
-  if (note && (restState||pianoState) ) {
+  //play the note and change piano key color
+  if (note && (restState || pianoState)) {
     key.css('background-color', colors(note));
     window.setTimeout(function() {
-      if(key.attr('id')[0]=='w'){
-      key.css('background-color', 'white')
-    }else{
-      key.css('background-color', '#3b3a36')
-    }
+      if (key.attr('id')[0] == 'w') {
+        key.css('background-color', 'white')
+      } else {
+        key.css('background-color', '#3b3a36')
+      }
     }, 200)
-
     player(note);
     playedNotes.push(Note(note, time))
     console.log('allnotes', playedNotes);
   }
-
 });
 
 
 //function that actually plays the appropriate sound
 var player = function(note) {
-  //console.log(note);
-
   var playNote = function(id) {
     var audio = new Audio('http://www.freesound.org/data/previews/68/' + id + '_871124-lq.mp3');
     audio.play();
   }
-
   switch (note) {
     case 'G#':
       playNote('68447')
@@ -210,7 +189,6 @@ var player = function(note) {
       playNote('68445');
       break;
     case 'G':
-      //console.log('low g');
       var audio = new Audio('http://www.freesound.org/data/previews/95/95332_1579599-lq.mp3');
       audio.play();
       break
@@ -218,6 +196,4 @@ var player = function(note) {
       playNote('68448');
       break;
   }
-
-
 }

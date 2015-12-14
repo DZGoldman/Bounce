@@ -6,9 +6,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var Melody = require('./models/melody.js')
 
-/************/
 
-// let's get some good logging in the console
 app.use(morgan('combined'));
 
 // serve static files from the public directory
@@ -19,7 +17,7 @@ mongoose.connect('mongodb://localhost/tunendrop', (err) => {
    if (err) {
       console.log(err);
    } else {
-      console.log('connection successfull');
+      console.log('connected the database');
    }
 });
 
@@ -41,13 +39,10 @@ app.post('/new', function (req , res) {
 })
 
 app.get('/recentlycreated', function (req, res) {
-//  db.melodies.find().sort({_id:-1}).limit(3)
    Melody.find({}, function (err, melodies) {
     res.send(melodies.slice(Math.max(melodies.length - 50, 1)))
   })
-
 })
-
 
 
 // listen on a port
