@@ -47,6 +47,35 @@ var visualizer = function(notes) {
   World.add(world, bodies);
 
 
+
+
+  //spark factory
+  var SparkFactory = function () {
+    return Bodies.circle(circle.position.x, circle.position.y, 1.5,
+      {  render: { fillStyle: 'black',
+                    strokeStyle: 'black'},
+      groupId:1,
+    },
+    1000
+    )
+  };
+  var makeSparks = function (num) {
+   var createdSparks=[];
+   for (var i = 0; i < num; i++) {
+     var spark = SparkFactory()
+     createdSparks.push(spark);
+     Matter.Body.applyForce(spark, {x:0,y:0}, {x:.001*(Math.random()-.5), y:.001*(Math.random()-.5)})
+     World.add(world, spark);
+
+     window.setTimeout(function () {
+       Matter.Composite.remove(world, createdSparks)
+     },400)
+   }
+   return createdSparks
+ }
+
+
+
   // create the blockers-
   // TODO clean up as one function?
   var currentNote = 0;
@@ -68,9 +97,14 @@ var visualizer = function(notes) {
           body.render.strokeStyle = 'rgb(255, 255, 255)'
         }, 300)
         body.groupId = 1;
-        player(body.note)
+        player(body.note);
+        makeSparks(10)
+
       }
     })
+
+    //TODO sparks
+
   });
 
   // at each update, check to see if it's time to make a new blockerr

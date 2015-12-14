@@ -1,5 +1,5 @@
 // the main controller file
-
+// window.parent.document.body.style.zoom = .5;
 var kill = false
 var playedNotes = [];
 var timerID;
