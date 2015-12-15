@@ -13,13 +13,15 @@ app.use(morgan('combined'));
 app.use(  express.static(__dirname+'/public'));
 app.use(bodyParser());
 
-mongoose.connect('mongodb://localhost/tunendrop', (err) => {
+mongoose.connect('mongodb://localhost/tunendrop', function(err) {
    if (err) {
       console.log(err);
    } else {
       console.log('connected the database');
    }
-});
+}
+
+);
 
 // set up a default route
 app.get('/', function(req,res){
