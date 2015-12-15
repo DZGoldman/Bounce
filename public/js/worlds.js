@@ -232,7 +232,7 @@ var visualizer = function(notes) {
         //when circle reaches bottom, kill it
         if (circle.position.y > world.bounds.max.y - 10) {
           //making it's mass Infinity kills it for some reason
-          circle.mass = Infinity
+          Matter.Composite.remove(world, circle)
         };
         //when all the blocks have fallen...
         var allFallen = true;
