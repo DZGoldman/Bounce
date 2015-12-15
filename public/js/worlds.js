@@ -52,10 +52,10 @@ var visualizer = function(notes) {
 
   //spark factory
   var SparkFactory = function() {
-    return Bodies.circle(circle.position.x, circle.position.y, 0.5, {
+    return Bodies.circle(circle.position.x, circle.position.y, 1, {
         render: {
-          fillStyle: 'black',
-          strokeStyle: 'black'
+          fillStyle: circle.render.fillStyle,
+          strokeStyle: circle.render.strokeStyle
         },
         groupId: 1,
       },
@@ -71,14 +71,14 @@ var visualizer = function(notes) {
         x: 0,
         y: 0
       }, {
-        x: .00005 * (Math.random() - .5),
-        y: .00005 * (Math.random() - .5)
+        x: .00009 * (Math.random() - .5),
+        y: .00009 * (Math.random() - .5)
       })
       World.add(world, spark);
 
       window.setTimeout(function() {
         Matter.Composite.remove(world, createdSparks)
-      }, 1000)
+      }, 2000)
     }
     return createdSparks
   }
@@ -222,18 +222,29 @@ var visualizer = function(notes) {
       console.log('The sim is over');
       currentNote += 1;
       //make each blocker fall, one by one, all pretty:
-      allBlockers.forEach(function(blocker, index) {
-        window.setTimeout(function() {
-          blocker.isStatic = false
-        }, 150 * index)
-      })
+
+      window.setTimeout(function () {
+        Matter.Composite.remove(world, circle);
+        makeSparks(100)
+      }, 1000)
+
+      window.setTimeout(function () {
+        allBlockers.forEach(function(blocker, index) {
+          window.setTimeout(function() {
+            blocker.isStatic = false
+          }, 150 * index)
+        })
+
+      }, 2000)
 
       Events.on(engine, "afterTick", function(event) {
         //when circle reaches bottom, kill it
-        if (circle.position.y > world.bounds.max.y - 10) {
+
           //making it's mass Infinity kills it for some reason
-          Matter.Composite.remove(world, circle)
-        };
+
+
+
+
         //when all the blocks have fallen...
         var allFallen = true;
         allBlockers.forEach(function(blocker) {
