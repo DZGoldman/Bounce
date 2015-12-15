@@ -106,8 +106,8 @@ var simulator = function() {
 
   visualizer(playedNotes);
   $("html, body").animate({
-    scrollTop: $(window).height() - 835
-  }, 1200);
+    scrollTop: 270
+  }, 1500);
 }
 
 var saveMelody = function() {
