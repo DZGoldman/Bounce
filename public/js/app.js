@@ -31,6 +31,7 @@ $(function() {
   });
 
   $.get('/recentlycreated').done(function(data) {
+    
     data.reverse().forEach(function(melody) {
       //console.log(melody);
       var $melodyDiv = $('<div>');

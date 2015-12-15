@@ -112,8 +112,8 @@ var visualizer = function(notes) {
           }, 500)
           body.groupId = 1;
           player(body.note);
-
-              makeSparks(5)
+              // NOTE:disabling sparks
+              // makeSparks(5)
         }
       })
 
