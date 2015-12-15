@@ -78,7 +78,7 @@ var visualizer = function(notes) {
 
       window.setTimeout(function() {
         Matter.Composite.remove(world, createdSparks)
-      }, 300)
+      }, 1000)
     }
     return createdSparks
   }
