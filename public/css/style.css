@@ -139,8 +139,10 @@ body {
   height: 20px;
   opacity: 0.6;
   color: white;
-  font-size: 25px;
+  font-size: 15px;
   transition: background-color 0.3s ease;
+  text-align: center;
+  overflow: hidden;
 }
 .image:hover {
   background-color: #e9ece5
@@ -161,5 +163,6 @@ body {
   font-size: 20px;
   text-align: center;
   font-weight: bold;
+  overflow: hidden;
 
 }
