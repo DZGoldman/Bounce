@@ -14,8 +14,7 @@ var restState = true,
   simState = false;
 
 $(function() {
-  var keysValues = [65,87,83,69,68,70,84,71,84,71,89,72,85,74,75]
-
+  var keysValues = [65,87,83,69,68,70,84,71,84,71,89,72,85,74,75];
   $(document).keydown(function(e) {
     //spacebar triggers restState from simState
     if (e.keyCode == 32 && simState) {
@@ -30,8 +29,6 @@ $(function() {
       simulator()
     }
   });
-
-
 }) // end of on-load
 
 
@@ -61,10 +58,9 @@ $(function () {
 
       createPreset(amazingGrace, 'Amazing Grace');
 
-
     });
 
-});
+}); // end of on load
 
 var createPreset = function (notesArray, text) {
   var $melodyDiv = $('<div>');

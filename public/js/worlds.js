@@ -35,20 +35,23 @@ var visualizer = function(notes) {
 
   var bodies = []
     // create circle (music player)
-  var circle = Bodies.circle(width / 2, 0, 4, 1000);
-  circle.restitution = 1.2;
-  circle.friction = 0;
-  //circle.frictionAir=0;
-  circle.groupId = 1;
-  circle.isCircle= true
-  circle.render.fillStyle = 'rgb(255, 255, 255)';
-  circle.render.strokeStyle = ' rgb(255, 255, 255)'
+  var circle = Bodies.circle(width / 2, 0, 4,
+    {
+      restitution: 1.2,
+      friction: 0,
+      groupId: 1,
+      render:{
+        fillStyle: 'rgb(255, 255, 255)',
+        strokeStyle: 'rgb(255, 255, 255)'
+      }
+    }, 1000);
+  circle.isCircle=true;
+  //frictionAir=0;
+
   bodies.push(circle)
 
   World.add(world, bodies);
 
-
-  console.log(circle);
 
   //spark factory
   var SparkFactory = function() {
@@ -119,8 +122,6 @@ var visualizer = function(notes) {
 
     }
 
-
-
   });
 
 
@@ -132,28 +133,16 @@ var visualizer = function(notes) {
     }
     //make circle loop when it leaves bounds, asteroids style
     if (circle.position.y > world.bounds.max.y) {
-      Body.translate(circle, {
-        x: 0,
-        y: -world.bounds.max.y
-      });
+      Body.translate(circle, {x: 0,y: -world.bounds.max.y});
     };
     if (circle.position.y < 0) {
-      Body.translate(circle, {
-        x: 0,
-        y: world.bounds.max.y
-      });
+      Body.translate(circle, {x: 0,y: world.bounds.max.y});
     };
     if (circle.position.x > world.bounds.max.x) {
-      Body.translate(circle, {
-        x: -world.bounds.max.x,
-        y: 0
-      });
+      Body.translate(circle, {x: -world.bounds.max.x,y: 0});
     };
     if (circle.position.x < 0) {
-      Body.translate(circle, {
-        x: world.bounds.max.x,
-        y: 0
-      });
+      Body.translate(circle, {x: world.bounds.max.x,y: 0});
     };
 
     var currentTime = engine.timing.timestamp;
@@ -177,38 +166,27 @@ var visualizer = function(notes) {
           note: notes[currentNote].pitch,
           groupId: 2,
           bodyCount: currentNote,
+          render: {
+            fillStyle:'rgb(255, 255, 255)',
+            strokeStyle: 'rgb(255, 255, 255)'
+          }
         });
-
         //give newBlocker additinal params
         newBlocker.isStatic = true;
-        newBlocker.render.fillStyle = 'rgb(255, 255, 255)';
-        newBlocker.render.strokeStyle = 'rgb(255, 255, 255)';
         newBlocker.backgroundColor = colors(newBlocker.note);
 
         //blocker also loops, asteroids style
         if (newBlocker.position.y > world.bounds.max.y) {
-          Body.translate(newBlocker, {
-            x: 0,
-            y: -world.bounds.max.y
-          });
+          Body.translate(newBlocker, {x: 0,y: -world.bounds.max.y});
         };
         if (newBlocker.position.y < 0) {
-          Body.translate(newBlocker, {
-            x: 0,
-            y: world.bounds.max.y
-          });
+          Body.translate(newBlocker, {x: 0,y: world.bounds.max.y});
         };
         if (newBlocker.position.x > world.bounds.max.x) {
-          Body.translate(newBlocker, {
-            x: -world.bounds.max.x,
-            y: 0
-          });
+          Body.translate(newBlocker, {x: -world.bounds.max.x,y: 0});
         };
         if (newBlocker.position.x < 0) {
-          Body.translate(newBlocker, {
-            x: world.bounds.max.x,
-            y: 0
-          });
+          Body.translate(newBlocker, {x: world.bounds.max.x,y: 0});
         };
 
         allBlockers.push(newBlocker)
@@ -234,16 +212,9 @@ var visualizer = function(notes) {
             blocker.isStatic = false
           }, 150 * index)
         })
-
       }, 1000)
 
       Events.on(engine, "afterTick", function(event) {
-        //when circle reaches bottom, kill it
-
-          //making it's mass Infinity kills it for some reason
-
-
-
 
         //when all the blocks have fallen...
         var allFallen = true;
