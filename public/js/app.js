@@ -57,6 +57,8 @@ $(function () {
       });
 
       createPreset(amazingGrace, 'Amazing Grace');
+      createPreset(karmaPolice, 'Karma Police');
+      createPreset(ITHOTMK, 'ITHOTMK')
 
     });
 
