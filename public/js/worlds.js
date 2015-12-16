@@ -37,7 +37,7 @@ var visualizer = function(notes) {
     // create circle (music player)
   var circle = Bodies.circle(width / 2, 0, 4,
     {
-      restitution: 1.2,
+      restitution: 1.3,
       friction: 0,
       groupId: 1,
       render:{
@@ -46,7 +46,8 @@ var visualizer = function(notes) {
       }
     }, 1000);
   circle.isCircle=true;
-  //frictionAir=0;
+  circle.frictionAir=.01;
+  console.log(circle);
 
   bodies.push(circle)
 
@@ -79,9 +80,9 @@ var visualizer = function(notes) {
       })
       World.add(world, spark);
 
-      // window.setTimeout(function() {
-      //   Matter.Composite.remove(world, createdSparks)
-      // }, 2000)
+      window.setTimeout(function() {
+        Matter.Composite.remove(world, createdSparks)
+      }, 1500)
     }
     return createdSparks
   }
@@ -160,7 +161,7 @@ var visualizer = function(notes) {
         var xLoc = circle.position.x;
         var yLoc = circle.position.y;
         var accel = world.gravity.y * A
-        var newBlocker = Bodies.rectangle(xLoc + xVel * timeGap, yLoc + yVel * timeGap + 0.5 * accel * timeGap * timeGap, 30, 5, {
+        var newBlocker = Bodies.rectangle(xLoc + xVel * timeGap, yLoc + yVel * timeGap +  accel * timeGap * timeGap, 30, 5, {
           angle: Math.random() * Math.PI,
           //create a new key called note
           note: notes[currentNote].pitch,

@@ -58,7 +58,8 @@ $(function () {
 
       createPreset(amazingGrace, 'Amazing Grace');
       createPreset(karmaPolice, 'Karma Police');
-      createPreset(ITHOTMK, 'ITHOTMK')
+      createPreset(ITHOTMK, 'ITHOTMK');
+      createPreset(heyJude, 'Hey Jude');
 
     });
 
