@@ -70,7 +70,6 @@ var colors = function(pitch) {
   return backgroundColor
 };
 
-
 //piano
 //plays a sound, lights up keyboard, and creates a new note and adds to note array when a key is pressed
 $(document).keydown(function(e) {

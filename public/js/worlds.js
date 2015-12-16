@@ -76,9 +76,9 @@ var visualizer = function(notes) {
       })
       World.add(world, spark);
 
-      window.setTimeout(function() {
-        Matter.Composite.remove(world, createdSparks)
-      }, 2000)
+      // window.setTimeout(function() {
+      //   Matter.Composite.remove(world, createdSparks)
+      // }, 2000)
     }
     return createdSparks
   }
@@ -225,7 +225,7 @@ var visualizer = function(notes) {
 
       window.setTimeout(function () {
         Matter.Composite.remove(world, circle);
-        makeSparks(100)
+        makeSparks(50)
       }, 1000)
 
       window.setTimeout(function () {
@@ -235,7 +235,7 @@ var visualizer = function(notes) {
           }, 150 * index)
         })
 
-      }, 2000)
+      }, 1000)
 
       Events.on(engine, "afterTick", function(event) {
         //when circle reaches bottom, kill it

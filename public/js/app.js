@@ -14,6 +14,7 @@ var restState = true,
   simState = false;
 
 $(function() {
+  var keysValues = [65,87,83,69,68,70,84,71,84,71,89,72,85,74,75]
 
   $(document).keydown(function(e) {
     //spacebar triggers restState from simState
@@ -21,7 +22,7 @@ $(function() {
       rest();
       //piano key press triggers pianoState from resttate
       //TODO make it only the piano keys
-    } else if (restState) {
+    } else if (restState && keysValues.includes(e.keyCode)) {
       piano()
         //spacebar triggers simState from piano state
     } else if (e.keyCode == 32 && pianoState) {
@@ -31,7 +32,7 @@ $(function() {
   });
 
   $.get('/recentlycreated').done(function(data) {
-    
+
     data.reverse().forEach(function(melody) {
       //console.log(melody);
       var $melodyDiv = $('<div>');
