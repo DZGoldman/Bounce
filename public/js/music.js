@@ -25,40 +25,40 @@ var colors = function(pitch) {
   var backgroundColor;
   switch (pitch) {
     case 'G':
-      backgroundColor = 'rgb(235, 61, 61)'
+      backgroundColor = 'rgb(194, 15, 15)'
       break;
     case 'G#':
-      backgroundColor = 'rgb(223, 65, 242)'
+      backgroundColor = 'rgb(249, 94, 17)'
       break;
     case 'A':
-      backgroundColor = 'rgb(228, 145, 19)'
+      backgroundColor = 'rgb(240, 211, 20)'
       break;
     case 'A#':
-      backgroundColor = 'rgb(213, 0, 0)'
+      backgroundColor = 'rgb(45, 148, 0)'
       break;
     case 'B':
-      backgroundColor = 'rgb(224, 236, 6)'
+      backgroundColor = 'rgb(10, 41, 249)'
       break;
     case 'C':
-      backgroundColor = 'rgb(26, 224, 28)'
+      backgroundColor = 'rgb(141, 23, 205)'
       break;
     case 'C#':
-      backgroundColor = 'rgb(199, 217, 0)'
+      backgroundColor = 'rgb(179, 18, 109)'
       break;
     case 'D':
-      backgroundColor = 'rgb(36, 214, 209)';
+      backgroundColor = 'rgb(119, 0, 0)';
       break;
     case 'D#':
-      backgroundColor = 'rgb(26, 71, 208)'
+      backgroundColor = 'rgb(22, 135, 191)'
       break;
     case 'E':
       backgroundColor = 'rgb(0, 147, 111)'
       break;
     case 'F':
-      backgroundColor = 'rgb(40, 238, 23)'
+      backgroundColor = 'rgb(200, 40, 12)'
       break;
     case 'F#':
-      backgroundColor = 'rgb(164, 15, 182)'
+      backgroundColor = 'rgb(214, 161, 0)'
       break;
     case 'hG':
       backgroundColor = 'rgb(250, 114, 252)'
