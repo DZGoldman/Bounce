@@ -31,7 +31,7 @@ var colors = function(pitch) {
       backgroundColor = 'rgb(249, 94, 17)'
       break;
     case 'A':
-      backgroundColor = 'rgb(240, 211, 20)'
+      backgroundColor = 'rgb(219, 246, 0)'
       break;
     case 'A#':
       backgroundColor = 'rgb(45, 148, 0)'
@@ -58,7 +58,7 @@ var colors = function(pitch) {
       backgroundColor = 'rgb(200, 40, 12)'
       break;
     case 'F#':
-      backgroundColor = 'rgb(214, 161, 0)'
+      backgroundColor = 'rgb(66, 41, 41)'
       break;
     case 'hG':
       backgroundColor = 'rgb(250, 114, 252)'

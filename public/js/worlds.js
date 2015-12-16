@@ -47,12 +47,9 @@ var visualizer = function(notes) {
     }, 1000);
   circle.isCircle=true;
   circle.frictionAir=.01;
-  console.log(circle);
-
   bodies.push(circle)
 
   World.add(world, bodies);
-
 
   //spark factory
   var SparkFactory = function() {
@@ -66,6 +63,7 @@ var visualizer = function(notes) {
       1000
     )
   };
+  //creates num sparks (called at the end)
   var makeSparks = function(num) {
     var createdSparks = [];
     for (var i = 0; i < num; i++) {
@@ -79,7 +77,6 @@ var visualizer = function(notes) {
         y: .00009 * (Math.random() - .5)
       })
       World.add(world, spark);
-
       window.setTimeout(function() {
         Matter.Composite.remove(world, createdSparks)
       }, 1500)
@@ -87,10 +84,6 @@ var visualizer = function(notes) {
     return createdSparks
   }
 
-
-
-  // create the blockers-
-  // TODO clean up as one function?
   var currentNote = 0;
   var allBlockers = [];
 
@@ -102,8 +95,6 @@ var visualizer = function(notes) {
     var collidedBodies = [body1, body2];
 
     if (body1.isCircle|| body2.isCircle) {
-      console.log('now');
-
       collidedBodies.forEach(function(body) {
         if (body.groupId == 2) {
           circle.render.fillStyle = body.backgroundColor;
@@ -116,19 +107,14 @@ var visualizer = function(notes) {
           }, 500)
           body.groupId = 1;
           player(body.note);
-              // NOTE:disabling sparks
-              // makeSparks(5)
         }
       })
-
     }
-
   });
 
-
-  // at each update, check to see if it's time to make a new blockerr
+  // at each update
   Events.on(engine, "afterTick", function(event) {
-    // kill the engine user ends it
+    // kill the engine (when user ends it)
     if (kill) {
       engine.enabled = false;
     }
@@ -147,7 +133,7 @@ var visualizer = function(notes) {
     };
 
     var currentTime = engine.timing.timestamp;
-    // at the right time...
+    // , check to see if it's time to make a new blocker
     if (currentNote < notes.length) {
       //make a new blocker
       if (currentTime > notes[currentNote].time * 1000) {
@@ -189,7 +175,6 @@ var visualizer = function(notes) {
         if (newBlocker.position.x < 0) {
           Body.translate(newBlocker, {x: world.bounds.max.x,y: 0});
         };
-
         allBlockers.push(newBlocker)
         World.add(world, newBlocker)
         currentNote += 1;
@@ -204,15 +189,16 @@ var visualizer = function(notes) {
 
       window.setTimeout(function () {
         Matter.Composite.remove(world, circle);
-        makeSparks(50)
-      }, 1000)
+        makeSparks(50);
 
-      window.setTimeout(function () {
         allBlockers.forEach(function(blocker, index) {
+          //insurance, in case a blocker is missed, so it doesn't colide with a spark
+          blocker.groupId=1;
           window.setTimeout(function() {
             blocker.isStatic = false
           }, 150 * index)
         })
+
       }, 1000)
 
       Events.on(engine, "afterTick", function(event) {
@@ -227,7 +213,6 @@ var visualizer = function(notes) {
           //reset and releach visualizer with the same notes
         if (allFallen) {
           window.setTimeout(function() {
-            console.log('test');
             $('#world').empty();
             Engine.clear(engine);
             World.clear(world, false)
