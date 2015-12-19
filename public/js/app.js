@@ -20,7 +20,6 @@ $(function() {
     if (e.keyCode == 32 && simState) {
       rest();
       //piano key press triggers pianoState from resttate
-      //TODO make it only the piano keys
     } else if (restState && keysValues.includes(e.keyCode)) {
       piano()
         //spacebar triggers simState from piano state

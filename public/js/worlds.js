@@ -147,7 +147,7 @@ var visualizer = function(notes) {
         var xLoc = circle.position.x;
         var yLoc = circle.position.y;
         var accel = world.gravity.y * A
-        var newBlocker = Bodies.rectangle(xLoc + xVel * timeGap, yLoc + yVel * timeGap +  accel * timeGap * timeGap, 30, 5, {
+        var newBlocker = Bodies.rectangle(xLoc + xVel * timeGap, yLoc + yVel * timeGap +  0.5*accel * timeGap * timeGap, 30, 5, {
           angle: Math.random() * Math.PI,
           //create a new key called note
           note: notes[currentNote].pitch,
