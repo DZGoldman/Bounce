@@ -1,3 +1,5 @@
+# Improvements
+
 1.	Ugly
 2.	Onboarding experience
    1. Intro animation
@@ -17,3 +19,15 @@
 11. Don’t show top of the canvas
 12. Colors are ugly
 13. Explosion feels a bit slow
+
+# Wireframes v1.1
+
+![Intro](http://i.imgur.com/UnWhTbc.jpg)
+---
+![Keyboard](http://i.imgur.com/YKyZtvx.jpg)
+---
+![Playing](http://i.imgur.com/qPTTeoL.jpg)
+---
+![Transition](http://i.imgur.com/PvpatXk.jpg)
+---
+![Visualizer](http://i.imgur.com/stAWFR7.jpg)
