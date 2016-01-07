@@ -32,20 +32,20 @@ function title () {
 
 $.get('./design/SVGs/droptone-02.svg').done(function(data) {
 
-           var vertexSets = [],
-               color =  '#4ECDC4';
+           var vertexSets = [];
+            // var   color =  '#4ECDC4';
 
            $(data).find('path').each(function(i, path) {
-               console.log(i,path);
-               console.log(Body,Svg);
+              //  console.log(i,path);
+              //  console.log(Body,Svg);
                vertexSets.push(Svg.pathToVertices(path, 30));
            });
 
            World.add(world, Bodies.fromVertices(400, 80, vertexSets, {
-               render: {
-                   fillStyle: color,
-                   strokeStyle: color
-               }
+              //  render: {
+              //      fillStyle: color,
+              //      strokeStyle: color
+              //  }
            }, true));
        });
 
