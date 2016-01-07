@@ -49,7 +49,8 @@ var visualizer = function(notes) {
     }, 1000);
   circle.isCircle=true;
   circle.frictionAir=.01;
-  bodies.push(circle)
+  bodies.push(circle);
+  console.log(circle);
 
   World.add(world, bodies);
 
@@ -99,10 +100,17 @@ var visualizer = function(notes) {
     if (body1.isCircle|| body2.isCircle) {
       collidedBodies.forEach(function(body) {
         if (body.groupId == 2) {
+          body.isStatic = false;
+          window.setTimeout(function () {
+            body.isStatic= true
+          },150)
+          
           circle.render.fillStyle = body.backgroundColor;
           circle.render.strokeStyle = body.backgroundColor;
           body.render.fillStyle = body.backgroundColor;
           body.render.strokeStyle = body.backgroundColor;
+
+          console.log(body);
           window.setTimeout(function() {
             body.render.fillStyle = 'rgb(255, 255, 255)'
             body.render.strokeStyle = 'rgb(255, 255, 255)'
