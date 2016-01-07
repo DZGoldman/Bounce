@@ -1,14 +1,16 @@
 console.log('I am in here.');
 
-var Engine = Matter.Engine,
-  World = Matter.World,
-  Bodies = Matter.Bodies,
-  Render = Matter.render,
-  Events = Matter.Events,
-  Vector = Matter.Vector,
-  Body = Matter.Body;
+
 
 var visualizer = function(notes) {
+  var Engine = Matter.Engine,
+    World = Matter.World,
+    Bodies = Matter.Bodies,
+    Render = Matter.render,
+    Events = Matter.Events,
+    Vector = Matter.Vector,
+    Composite = Matter.Composite,
+    Body = Matter.Body;
 
   //create engine
   var engine = Engine.create(document.getElementById('world'));

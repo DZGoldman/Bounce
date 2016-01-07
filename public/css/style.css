@@ -11,15 +11,7 @@ body {
   background-color: #e9ece5;
   /*border: 3px solid black*/
 }
-#title {
-  font-size: 25px;
-  padding-top: 15px;
-  margin-left: 20px;
-  font-weight: bold;
-  /*margin: 30px;*/
-  font-family: 'Montserrat', sans-serif;
-  /*border: 2px solid black*/
-}
+
 #sub-title {
   margin-top: 5px;
   font-size: 15px;
@@ -113,6 +105,7 @@ body {
   left: 213px
 }
 #last-five-container {
+
   /*border: 2px solid blue;*/
   display: inline-block;
   font-size: 15px;
