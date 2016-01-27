@@ -166,3 +166,40 @@ body {
   overflow: hidden;
 
 }
+
+#alert{
+  font-size: 30px;
+  font-weight: bolder;
+  margin: 40px;
+  display: none
+}
+/*@media screen and (min-width: 320px) {
+  #non-mobile {
+    display: normal;
+  }
+}*/
+
+@media screen and (max-width: 680px) {
+  #non-mobile{
+   display: none;
+
+ }
+ #alert{
+   display: block;
+ }
+}
+
+/*@media screen and (min-height: 200px) {
+  #non-mobile {
+    display: normal;
+  }
+}*/
+  @media screen and (max-height: 500px) {
+     #non-mobile{
+      display: none;
+
+    }
+    #alert{
+      display: block;
+    }
+  }
