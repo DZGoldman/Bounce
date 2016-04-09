@@ -33,10 +33,6 @@ The piano, timer, and visualizer were all hard coded for this project. The timer
 - Jquery
 - HTML / CSS
 
-### Biggest Challanges
-- Placing blockers in a location slightly ahead of the circle (so the circle hits them instead of overlapping with them upon creation)
--
-
 ### Thank Yous:
 - @liabru for his quick, useful responses to github issues (and for creating Matterjs. That too was helpful)
 - 'pinkyfinger' at freesound.com, for uploading 11 piano key sounds to the api (though I feel like he should have uploaded 12 notes, to make it a full octave, because to get that root note I had to use an alternative source and the volume and tone is slightly different and it bothers me every time. But it's fine. Whatever.)
