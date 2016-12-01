@@ -1,0 +1,10 @@
+body{
+  margin: 50px;
+  font-family: 'Cousine', monospace;
+  font-size: 25px;
+  line-height: 35px;
+}
+
+#email{
+  font-size: 18px;
+}
